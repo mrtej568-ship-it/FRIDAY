@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FRIDAY OS</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#00d9ff;font-family:'Consolas', monospace;overflow:hidden; height:100vh; background-image: radial-gradient(#00d9ff15 1px, transparent 1px); background-size:40px 40px;}
+.top{display:flex;justify-content:space-between;padding:12px 25px;border-bottom:2px solid #00d9ff;background:#00141f;letter-spacing:2px;font-size:13px;box-shadow:0 0 15px #00d9ff55;}
+.main{display:grid;grid-template-columns:22% 56% 22%;height:calc(100vh - 45px);gap:12px;padding:12px;}
+.panel{border:1px solid #00d9ff44;background:linear-gradient(180deg,#001f2fcc,#000a);padding:15px;position:relative;}
+.panel::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:#00d9ff;box-shadow:0 0 10px #00d9ff;}
+h3{font-size:10px;letter-spacing:4px;color:#00d9ff;margin-bottom:12px;border-left:3px solid #00d9ff;padding-left:8px;}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.reactor{width:300px;height:300px;border-radius:50%;border:3px solid #00d9ff;box-shadow:0 0 60px #00d9ff, inset 0 0 30px #00d9ff;display:flex;align-items:center;justify-content:center;position:relative;}
+.reactor b{font-size:100px;text-shadow:0 0 30px #00d9ff;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.btn{width:100%;background:#002233;border:1px solid #00d9ff;color:#00d9ff;padding:9px;margin:4px 0;cursor:pointer;letter-spacing:2px;font-size:11px}
+.btn:hover{background:#00d9ff;color:#000;box-shadow:0 0 15px #00d9ff}
+.chat{position:absolute;bottom:20px;width:88%;display:flex;gap:6px;}
+.chat input{flex:1;background:#000;border:1px solid #00d9ff;padding:12px;color:#00d9ff;outline:none}
+.chat button{background:#00d9ff;border:none;padding:12px 18px;font-weight:bold;cursor:pointer}
+#reply{margin-top:25px;color:#fff;text-align:center;max-width:420px;font-size:14px;line-height:20px;min-height:50px;text-shadow:0 0 10px #00d9ff}
+.data{font-size:11px;line-height:17px;opacity:.9}
+</style>
+</head>
+<body>
+<div class="top"><div>STARK INDUSTRIES // FRIDAY OS</div><div>BOSS: TEJA | <span id="clock"></span></div></div>
+<div class="main">
+<div class="panel"><h3>SYSTEM CORE</h3><div class="data">CPU: 42% [███████░░░]<br>MEM: 8.2GB / 16GB<br>NETWORK: ONLINE<br>AI CORE: GROQ LLAMA3<br><br>> All systems nominal<br>> Protocols active</div><h3 style="margin-top:20px;">CONTROLS</h3><button class="btn" onclick="cmd('open youtube')">YOUTUBE</button><button class="btn" onclick="cmd('open google')">GOOGLE</button><button class="btn" onclick="cmd('what is time')">TIME</button><button class="btn" onclick="cmd('who are you')">ABOUT FRIDAY</button></div>
+
+<div class="panel center"><div class="reactor"><b>◈</b></div><div id="reply">FRIDAY Online. Ready to work, Boss.</div><div class="chat"><input id="msg" placeholder="COMMAND TO FRIDAY..." onkeydown="if(event.key==='Enter') send()"><button onclick="send()">EXECUTE</button></div></div>
+
+<div class="panel"><h3>ENVIRONMENT</h3><div class="data"><div style="font-size:36px;color:#fff;" id="t1">30°C</div>Fair - Humidity 14%<br>Narasaraopet, AP<br><div style="font-size:26px;color:#fff;margin-top:12px" id="t2">--:--:--</div>SECURE CHANNEL<br>CPU TEMP: 34°C</div><h3 style="margin-top:20px;">FRIDAY LOG</h3><div class="data" id="log">> FRIDAY initialized<br>> Linked to Boss: Teja<br>> Waiting for command</div></div>
+</div>
+<script>
+setInterval(()=>{document.getElementById('clock').innerText=new Date().toLocaleString(); document.getElementById('t2').innerText=new Date().toLocaleTimeString()},1000);
+async function send(){let m=document.getElementById('msg').value; if(!m) return; cmd(m);}
+async function cmd(m){document.getElementById('reply').innerText="FRIDAY is thinking..."; document.getElementById('msg').value=""; let r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:m})}); let d=await r.json(); document.getElementById('reply').innerText=d.reply; document.getElementById('log').innerHTML+="<br>> "+m+"<br><span style='color:#fff'>"+d.reply.substring(0,60)+"</span>"; if(d.action=='youtube') window.open('https://youtube.com','_blank'); if(d.action=='google') window.open('https://google.com','_blank');}
+</script>
+</body>
+</html>
