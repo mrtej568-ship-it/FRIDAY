@@ -1,27 +1,29 @@
 import datetime
 import os
-
-from flask import Flask, jsonify, render_template, request
-from flask import Flask
+from flask import Flask, jsonify, request
+from groq import Groq
 
 app = Flask(__name__)
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
-
 def offline_reply():
-    return (
-        "I'm FRIDAY and I'm currently offline. "
-        "I can still tell the time, open YouTube, or open Google for you, Boss."
-    )
-
+    return "I'm FRIDAY and I'm currently offline. I can still tell the time, open YouTube, or open Google for you, Boss."
 
 @app.route('/')
 def home():
-    return "FRIDAY is LIVE! - Your AI is Working"
+    return """
+    <html><body style="background:black;color:cyan;text-align:center;font-family:Arial;padding-top:80px">
+    <h1>🤖 FRIDAY IS LIVE!</h1>
+    <h2>Boss, Your AI is Online ✅</h2>
+    <p>API working at /ask | Your code is fixed!</p>
+    </body></html>
+    """
 
-
+@app.route('/health')
+def health():
+    return "OK"
 
 @app.route('/ask', methods=['POST'])
 def ask():
@@ -32,7 +34,6 @@ def ask():
 
     if not user_msg:
         return jsonify({'reply': 'Boss, I need a command or question.'})
-
     if 'youtube' in msg_lower:
         return jsonify({'reply': 'Opening YouTube Boss', 'action': 'youtube'})
     if 'google' in msg_lower:
@@ -40,7 +41,7 @@ def ask():
     if 'time' in msg_lower:
         return jsonify({'reply': f"It's {now.strftime('%I:%M %p')} Boss"})
     if 'who are you' in msg_lower or 'about friday' in msg_lower:
-        return jsonify({'reply': 'I am FRIDAY, your AI assistant, Boss. Ready to help.'})
+        return jsonify({'reply': 'I am FRIDAY, your AI assistant built by Junnu. Ready to help Boss!'})
 
     if client is None:
         return jsonify({'reply': offline_reply()})
@@ -49,10 +50,7 @@ def ask():
         chat = client.chat.completions.create(
             model='llama3-8b-8192',
             messages=[
-                {
-                    'role': 'system',
-                    'content': 'You are FRIDAY, female AI from Iron Man. For Teja. Call him Boss. Reply short, caring, smart.'
-                },
+                {'role': 'system', 'content': 'You are FRIDAY, female AI from Iron Man. For Teja. Call him Boss. Reply short, caring, smart.'},
                 {'role': 'user', 'content': user_msg}
             ]
         )
@@ -62,6 +60,6 @@ def ask():
         app.logger.exception('Groq request failed: %s', exc)
         return jsonify({'reply': offline_reply()})
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
