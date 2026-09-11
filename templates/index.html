@@ -1,77 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>FRIDAY OS</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DH² // TEJA'S FRIDAY OS v5.0</title>
 <style>
-body{background:#020d0d;color:#7cf9f9;font-family:monospace;margin:0;overflow:hidden}
-.header{border:1px solid #0ff;padding:5px 15px;display:flex;justify-content:space-between;font-size:12px;background:#001a1a}
-.main{display:grid;grid-template-columns:220px 1fr 220px;height:92vh;gap:5px;padding:5px}
-.box{border:1px solid #00ffff44;background:#001010aa;padding:10px}
-button{width:100%;background:transparent;border:1px solid #0ff;color:#0ff;padding:8px;margin:4px 0;cursor:pointer}
-button:hover{background:#0ff;color:#000}
-.center{display:flex;flex-direction:column;align-items:center;justify-content:center}
-.orb{width:220px;height:220px;border-radius:50%;border:2px solid #0ff;box-shadow:0 0 30px #0ff;display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 20px #0ff}50%{box-shadow:0 0 50px #0ff}100%{box-shadow:0 0 20px #0ff}}
-.diamond{width:40px;height:40px;background:#0ff;transform:rotate(45deg);box-shadow:0 0 20px #0ff}
-#log{font-size:11px;height:350px;overflow-y:auto}
-#inputBar{display:flex;margin-top:15px;width:80%}
-#cmd{flex:1;background:#000;border:1px solid #0ff;color:#0ff;padding:10px}
-#exec{background:#0ff;color:#000;border:none;padding:10px 20px;cursor:pointer;margin-left:5px}
-#reply{margin-top:10px;color:#fff;min-height:40px;font-size:13px}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020a0a;color:#00e5ff;font-family:'Orbitron',monospace;overflow:hidden;height:100vh;background:radial-gradient(circle at center, #002222 0%, #000709 100%)}
+.top{height:22px;border-bottom:1px solid #00ffff33;display:flex;align-items:center;padding:0 10px;font-size:11px;letter-spacing:2px}
+.top span{margin-right:14px;opacity:0.6}.top span.active{background:#00ffff;color:#000;padding:2px 8px;border-radius:3px;opacity:1}
+.main{display:grid;grid-template-columns:320px 1fr 340px;height:calc(100vh - 22px)}
+.left,.right{padding:8px;border-right:1px solid #00ffff22;position:relative;overflow:hidden}
+.right{border-left:1px solid #00ffff22;border-right:none}
+.circle{border-radius:50%;border:2px solid #00ffff;box-shadow:0 0 25px #00ffff88, inset 0 0 15px #00ffff44;display:flex;align-items:center;justify-content:center;position:absolute}
+.c-big{width:170px;height:170px;left:20px;top:30px}
+.c-cpu{width:95px;height:95px;left:210px;top:90px;font-size:9px;line-height:1.2;text-align:center}
+.c-ram{width:110px;height:110px;left:320px;top:15px;font-size:10px;text-align:center}
+.c-energy{width:130px;height:130px;left:20px;top:420px}
+.c-bottom{width:140px;height:140px;left:190px;bottom:20px}
+.center{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.reactor{width:480px;height:480px;border-radius:50%;position:relative;border:1px solid #00ffff44;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;border-radius:50%;border:1px solid #00ffff88;animation:spin linear infinite}
+.r1{width:92%;height:92%;border-top:3px solid #ff0044;animation-duration:4s}
+.r2{width:78%;height:78%;border:2px dashed #00ffff66;animation-duration:8s;animation-direction:reverse}
+.r3{width:62%;height:62%;background:radial-gradient(circle, #00ffffcc, #004444 70%);box-shadow:0 0 60px #00ffff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.r3:hover{box-shadow:0 0 90px #00ffff}
+@keyframes spin{to{transform:rotate(360deg)}}
+.diamond{width:22px;height:22px;background:#fff;transform:rotate(45deg);box-shadow:0 0 15px #fff}
+.brand-left{position:absolute;left:20px;top:380px;line-height:0.9}
+.brand-left.small{font-size:12px;letter-spacing:4px;color:#7cffff}
+.brand-left.big{font-size:44px;font-weight:900;color:#a0ffff;text-shadow:0 0 20px #00ffff}
+.brand-bottom{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);font-size:32px;font-weight:900;letter-spacing:4px;color:#00ffff;text-shadow:0 0 20px #00ffff}
+.weather{font-size:11px;line-height:1.6}
+.controls{position:absolute;bottom:10px;left:10px;right:10px}
+.btn{width:48%;background:rgba(0,255,255,0.08);border:1px solid #00ffff;color:#00ffff;padding:7px;margin:2px;cursor:pointer;font-size:9px;letter-spacing:1px;display:inline-block}
+.btn:hover{background:#00ffff;color:#000;box-shadow:0 0 15px #00ffff}
+.btn-danger{border-color:#ff2a6d;color:#ff2a6d;width:100%}
+#reply{color:#fff;font-size:12px;min-height:40px;margin:10px 0;text-align:center;max-width:500px}
+#cmd{flex:1;background:#000;border:1px solid #00ffff;color:#00ffff;padding:8px;font-family:monospace}
+#exec{background:#00ffff;color:#000;border:none;padding:8px 15px;cursor:pointer;font-weight:bold}
+.input-row{display:flex;width:90%;max-width:500px;margin-top:10px}
+#log{font-size:9px;height:90px;overflow-y:auto;color:#00ffff99;margin-top:8px;border-top:1px solid #00ffff22;padding-top:5px}
 </style>
 </head>
 <body>
-<div class="header"><span>STARK INDUSTRIES // FRIDAY OS</span><span id="topTime"></span></div>
-<div class="main">
-<div class="box">
-<b>SYSTEM CORE</b><br><br>
-CPU: 42%<br>MEM: 8.2GB / 16GB<br>NEURAL: ONLINE<br>AI CORE: FRIDAY<br><br>
-> All systems nominal<br>> Protocols active<br><br>
-<b>CONTROLS</b>
-<button onclick="doCmd('open youtube')">YOUTUBE</button>
-<button onclick="doCmd('open google')">GOOGLE</button>
-<button onclick="doCmd('what is time')">TIME</button>
-<button onclick="doCmd('about friday')">ABOUT FRIDAY</button>
-</div>
-<div class="box center">
-<div class="orb"><div class="diamond"></div></div>
-<div id="reply">I'm FRIDAY and I'm currently offline. I can still tell the time, open YouTube, or open Google for you, Boss.</div>
-<div id="inputBar"><input id="cmd" placeholder="COMMAND TO FRIDAY..."><button id="exec" onclick="send()">EXECUTE</button></div>
-</div>
-<div class="box">
-<div>ENVIRONMENT</div>
-<b style="font-size:28px">30°C</b><br>TERRAIN: ANALYZED, 14%<br><br>
-<b id="clock">3:26:05 PM</b><br>CPU TEMP: 54°C<br><br>
-<b>FRIDAY LOG</b>
-<div id="log">
-> FRIDAY initialized<br>> Linked to Stark Tech<br>> Waiting for command<br>> open youtube<br>> opening youtube.com<br>> open google<br>> opening google<br>> who are you<br>> I am your AI assistant, Boss, ready to help.<br>
-</div>
-</div>
-</div>
-<script>
-function updateTime(){
-let n=new Date();
-document.getElementById('clock').innerText=n.toLocaleTimeString();
-document.getElementById('topTime').innerText="BOSS: TEJA // "+n.toLocaleString();
-}
-setInterval(updateTime,1000);updateTime();
+<div class="top"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span class="active">21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span style="margin-left:auto">GUNTUR, AP // DH² // TEJA'S FRIDAY OS v5.0</span></div>
 
-async function doCmd(t){document.getElementById('cmd').value=t;send();}
-async function send(){
-let input=document.getElementById('cmd');
-let msg=input.value;if(!msg)return;
-let log=document.getElementById('log');
-log.innerHTML+="<br>> "+msg;
-let res=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
-let data=await res.json();
-document.getElementById('reply').innerText=data.reply;
-log.innerHTML+="<br>> "+data.reply;
-log.scrollTop=log.scrollHeight;
-if(data.action=='youtube')window.open('https://youtube.com','_blank');
-if(data.action=='google')window.open('https://google.com','_blank');
-input.value='';
+<div class="main">
+<div class="left">
+<div class="circle c-big"><div style="text-align:center"><div style="font-size:10px">JUNE</div><div style="font-size:64px;font-weight:700;line-height:1">21</div><div style="font-size:8px;margin-top:5px">STARDATE // 2026.09.11</div></div></div>
+<div class="circle c-cpu">CPU:<br>C0: 74%<br>C1: 57%</div>
+<div class="circle c-ram">RAM: 75%<br>SWAP: 49%</div>
+<div class="brand-left"><div class="small">TEJA'S</div><div class="big">FRIDAY</div><div style="font-size:8px;margin-top:4px;letter-spacing:2px">BUILT BY BOSS TEJA</div></div>
+<div class="circle c-energy"><div style="text-align:center">ENERGY<br><span style="font-size:22px">100%</span><br><span style="font-size:8px">DH² POWER</span></div></div>
+<div class="circle c-bottom"><div style="text-align:center;font-size:9px">NET<br>UP: 0.0k<br>DOWN: 1.0k<br>DH²-CORE-01</div></div>
+<div class="controls">
+<button class="btn" onclick="openApp('youtube')">YOUTUBE</button>
+<button class="btn" onclick="openApp('google')">GOOGLE</button>
+<button class="btn" onclick="openApp('gmail')">GMAIL</button>
+<button class="btn" onclick="openApp('github')">GITHUB</button>
+<button class="btn" onclick="openApp('instagram')">INSTA</button>
+<button class="btn" onclick="openApp('chatgpt')">CHATGPT</button>
+<button class="btn" onclick="openApp('maps')">MAPS</button>
+<button class="btn" onclick="openApp('drive')">DRIVE</button>
+<button class="btn" onclick="openApp('netflix')">NETFLIX</button>
+<button class="btn" onclick="openApp('spotify')">SPOTIFY</button>
+<button class="btn btn-danger" onclick="startVoice()">🎤 HEY FRIDAY - VOICE</button>
+<div id="log">> FRIDAY v5.0 ENGLISH loaded<br>> DH² Core Online<br>> Multi-language ready<br>> All Apps Access Enabled<br></div>
+</div>
+</div>
+
+<div class="center">
+<div style="font-size:10px;letter-spacing:4px;margin-bottom:10px">THREAT SCAN // CLEAR — PERIMETER // SECURE — DH² SHIELD // ACTIVE</div>
+<div class="reactor"><div class="ring r1"></div><div class="ring r2"></div><div class="r3" onclick="startVoice()"><div class="diamond"></div></div></div>
+<div id="reply">I am FRIDAY, built by Boss Teja under DH². Multi-language ready. Say "open youtube" or "ela unnav" Boss.</div>
+<div class="input-row"><input id="cmd" placeholder="COMMAND - open youtube / ela unnav / kaise ho..."><button id="exec" onclick="send()">EXECUTE</button></div>
+<div class="brand-bottom">DH²</div>
+<div style="position:absolute;bottom:10px;font-size:8px;letter-spacing:2px">DH² OS // ENCRYPTED LINK // ALL SYSTEMS NOMINAL // GUNTUR</div>
+</div>
+
+<div class="right weather">
+<div style="display:flex;justify-content:space-between"><div><h2>30°C</h2>Clear<br>Humidity: 77%<br>Feels Like: 32°<br>Location: Guntur</div><div style="width:70px;height:70px;border-radius:50%;background:radial-gradient(circle, #fff, #00ffff);box-shadow:0 0 20px #00ffff"></div></div><br>
+<b>Today Night</b> 24° Partly Cloudy<br>
+<b>Tomorrow</b> 32° / 24° Sunny<br>
+<b>Friday</b> 33° / 25° Clear<br>
+<b>Saturday</b> 31° / 24° Cloudy<br>
+<b>Sunday</b> 30° / 23° Rain Expected<br><br>
+<div style="border:1px solid #00ffff44;padding:8px">
+<b id="clock">--:--:--</b><br>
+BOSS: TEJA<br>
+DH² CORE: <span id="cpu">42</span>%<br>
+LANG: AUTO (TE/EN/HI)<br>
+STATUS: VOICE READY
+</div>
+</div>
+</div>
+
+<script>
+const apps = {
+youtube:'https://youtube.com', google:'https://google.com', gmail:'https://mail.google.com',
+github:'https://github.com', instagram:'https://instagram.com', chatgpt:'https://chat.openai.com',
+maps:'https://maps.google.com', drive:'https://drive.google.com', netflix:'https://netflix.com',
+spotify:'https://open.spotify.com', whatsapp:'https://web.whatsapp.com', facebook:'https://facebook.com',
+twitter:'https://twitter.com', linkedin:'https://linkedin.com', amazon:'https://amazon.in'
+};
+let recognition; let isListening = false;
+function setupVoice(){
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+if(!SR){ alert("Boss, use Chrome for voice!"); return; }
+recognition = new SR(); recognition.continuous = true; recognition.interimResults = false; recognition.lang = 'en-US';
+recognition.onstart = () => { isListening=true; document.getElementById('reply').innerText="🎤 Listening... Say 'open youtube' or 'ela unnav' Boss"; document.getElementById('log').innerHTML+="<br>> 🎤 MIC ON"; }
+recognition.onend = () => { if(isListening) recognition.start(); }
+recognition.onresult = (e) => { let t = e.results[e.results.length-1][0].transcript.toLowerCase().trim(); document.getElementById('cmd').value=t; handleVoice(t); }
+recognition.onerror = (e) => { console.log(e); }
 }
+function handleVoice(msg){
+logMsg("VOICE: "+msg);
+if(msg.includes("open")){
+for(let k in apps){ if(msg.includes(k)){ openApp(k); speak(`Opening ${k}, Boss`); return; } }
+let custom = msg.replace("open","").trim(); if(custom){ window.open(`https://${custom}.com`,'_blank'); speak(`Opening ${custom}, Boss`); return; }
+}
+if(msg.includes("close")){ speak("Closing tab, Boss"); window.close(); return; }
+sendToAI(msg);
+}
+function openApp(name){ let url=apps[name.toLowerCase()]||`https://${name}.com`; window.open(url,'_blank'); logMsg(`> Opened ${name.toUpperCase()}`); }
+function logMsg(t){ let l=document.getElementById('log'); l.innerHTML+="<br>> "+t; l.scrollTop=l.scrollHeight; }
+function speak(t){ if('speechSynthesis' in window){ speechSynthesis.cancel(); let u=new SpeechSynthesisUtterance(t); u.rate=0.95; u.pitch=0.9; speechSynthesis.speak(u); } }
+function updateTime(){ let n=new Date(); document.getElementById('clock').innerText=n.toLocaleTimeString()+' // '+n.toLocaleDateString(); document.getElementById('cpu').innerText=Math.floor(40+Math.random()*30); }
+setInterval(updateTime,1000); updateTime();
+async function sendToAI(msg){
+let rb=document.getElementById('reply'); rb.innerText="FRIDAY thinking...";
+try{ let r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})}); let d=await r.json(); rb.innerText=d.reply; logMsg(d.reply); if(d.url) window.open(d.url,'_blank'); speak(d.reply); }catch(e){ rb.innerText="Offline but apps work, Boss"; }
+}
+async function send(){ let i=document.getElementById('cmd'); let m=i.value.trim(); if(!m) return; handleVoice(m.toLowerCase()); i.value=''; }
+function startVoice(){ if(!recognition) setupVoice(); if(isListening){ isListening=false; recognition.stop(); document.getElementById('reply').innerText="Mic OFF, Boss"; }else{ isListening=true; recognition.start(); } }
+window.onload=()=>{ setupVoice(); }
 document.getElementById('cmd').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
 </script>
 </body>
