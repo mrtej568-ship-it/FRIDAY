@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DH² // FRIDAY v203 FULL</title>
+<title>DH² // FRIDAY v204 MEMORY</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -11,191 +11,158 @@ body{background:#010a0f;color:#00f0ff;font-family:'Rajdhani',sans-serif;height:1
 .main{display:grid;grid-template-columns:340px 1fr 380px;height:calc(100vh - 28px)}
 .left{border-right:2px solid #00f0ff33;padding:12px;background:rgba(0,20,30,0.6);overflow-y:auto}
 .left::-webkit-scrollbar{width:6px}.left::-webkit-scrollbar-thumb{background:#00f0ff66}
-.left h3{font-family:'Orbitron';font-size:11px;letter-spacing:4px;margin-bottom:10px;color:#00f0ff}
 .app-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .app-btn{background:linear-gradient(135deg, rgba(0,240,255,0.1), rgba(0,240,255,0.02));border:1px solid #00f0ff66;color:#00f0ff;padding:10px 5px;text-align:center;cursor:pointer;font-family:'Orbitron';font-size:9px;transition:0.2s}
 .app-btn:hover{background:#00f0ff;color:#000;box-shadow:0 0 20px #00f0ff;transform:scale(1.05);font-weight:700}
-.energy-ring{width:140px;height:140px;border:3px solid #00f0ff;border-radius:50%;margin:15px auto;display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 0 30px #00f0ff88;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 30px #00f0ff88}50%{box-shadow:0 0 50px #00f0ff}}
 .q-btn{background:rgba(255,0,100,0.15);border:1px solid #ff0066;color:#ff6a9d;padding:8px;font-size:9px;font-family:'Orbitron';cursor:pointer;margin-bottom:4px;width:100%}
 .q-btn.bluetooth{background:rgba(0,255,136,0.15);border-color:#00ff88;color:#00ff88}
-.q-btn.voice-active{background:rgba(0,240,255,0.25);border-color:#00f0ff;color:#fff;box-shadow:0 0 15px #00f0ff}
+.q-btn.voice-active{background:rgba(0,240,255,0.25);border-color:#00f0ff;color:#fff}
+.energy-ring{width:120px;height:120px;border:3px solid #00f0ff;border-radius:50%;margin:12px auto;display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 0 30px #00f0ff88;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 30px #00f0ff88}50%{box-shadow:0 0 50px #00f0ff}}
 .center{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at center, rgba(0,240,255,0.08) 0%, transparent 60%)}
-.reactor{width:380px;height:380px;position:relative;display:flex;align-items:center;justify-content:center}
+.reactor{width:340px;height:340px;position:relative;display:flex;align-items:center;justify-content:center}
 .ring{position:absolute;border-radius:50%;border:1px solid #00f0ff}
 .r1{width:100%;height:100%;border-top:3px solid #ff0055;border-right:3px solid transparent;animation:spin 3s linear infinite}
 .r2{width:82%;height:82%;border:2px dashed #00f0ff44;animation:spin 6s linear infinite reverse}
-.r3{width:60%;height:60%;background:radial-gradient(circle, #00f0ff, #004455);box-shadow:0 0 80px #00f0ff;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:glow 2s ease-in-out infinite}
-@keyframes spin{to{transform:rotate(360deg)}}@keyframes glow{0%,100%{box-shadow:0 0 80px #00f0ff}50%{box-shadow:0 0 120px #00f0ff}}
-.core{width:24px;height:24px;background:#fff;transform:rotate(45deg);box-shadow:0 0 20px #fff}
-.brand{font-family:'Orbitron';font-weight:900;font-size:36px;letter-spacing:8px;margin-top:20px;text-shadow:0 0 20px #00f0ff}
-.input-box{position:absolute;bottom:30px;width:85%;display:flex;gap:8px}
+.r3{width:60%;height:60%;background:radial-gradient(circle, #00f0ff, #004455);box-shadow:0 0 80px #00f0ff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{width:22px;height:22px;background:#fff;transform:rotate(45deg);box-shadow:0 0 20px #fff}
+.brand{font-family:'Orbitron';font-weight:900;font-size:34px;letter-spacing:8px;margin-top:15px;text-shadow:0 0 20px #00f0ff}
+.input-box{position:absolute;bottom:25px;width:85%;display:flex;gap:8px}
 #cmd{flex:1;background:rgba(0,0,0,0.7);border:2px solid #00f0ff;color:#00f0ff;padding:12px;font-family:'Orbitron';font-size:11px;outline:none}
-#cmd:focus{box-shadow:0 0 20px #00f0ff}
 #exec{background:#00f0ff;color:#000;border:none;padding:0 20px;font-family:'Orbitron';font-weight:900;cursor:pointer}
-
-/* RIGHT SIDE - SCROLL FIX */
-.right{border-left:2px solid #00f0ff33;background:rgba(0,10,15,0.85);display:flex;flex-direction:column;position:relative}
-.right-header{padding:10px;border-bottom:1px solid #00f0ff33;font-family:'Orbitron';font-size:10px;display:flex;justify-content:space-between;align-items:center}
-.scroll-controls{display:flex;gap:5px}
-.scroll-controls button{background:#00f0ff22;border:1px solid #00f0ff66;color:#00f0ff;padding:3px 8px;font-family:'Orbitron';font-size:10px;cursor:pointer}
+.right{border-left:2px solid #00f0ff33;background:rgba(0,10,15,0.9);display:flex;flex-direction:column}
+.right-header{padding:8px 10px;border-bottom:1px solid #00f0ff33;font-family:'Orbitron';font-size:9px;display:flex;justify-content:space-between;align-items:center}
+.scroll-controls{display:flex;gap:4px}
+.scroll-controls button{background:#00f0ff22;border:1px solid #00f0ff66;color:#00f0ff;padding:3px 7px;font-family:'Orbitron';font-size:9px;cursor:pointer}
 .scroll-controls button:hover{background:#00f0ff;color:#000}
-.chat-area{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
-.chat-area::-webkit-scrollbar{width:8px}
-.chat-area::-webkit-scrollbar-track{background:rgba(0,0,0,0.3)}
-.chat-area::-webkit-scrollbar-thumb{background:linear-gradient(#00f0ff, #0088aa);border-radius:10px}
-.chat-area::-webkit-scrollbar-thumb:hover{background:#00f0ff;box-shadow:0 0 10px #00f0ff}
-.msg{padding:12px;border-radius:6px;max-width:95%;font-size:13.5px;line-height:1.5;word-wrap:break-word;white-space:pre-wrap}
+.chat-area{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.chat-area::-webkit-scrollbar{width:8px}.chat-area::-webkit-scrollbar-track{background:rgba(0,0,0,0.3)}.chat-area::-webkit-scrollbar-thumb{background:linear-gradient(#00f0ff,#0088aa);border-radius:10px}
+.msg{padding:11px;border-radius:6px;max-width:95%;font-size:13px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}
 .msg.user{align-self:flex-end;background:rgba(0,240,255,0.15);border:1px solid #00f0ff66;color:#a0f0ff}
-.msg.friday{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid #ffffff22;color:#e0f8ff;box-shadow:0 0 10px rgba(0,240,255,0.1)}
+.msg.friday{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid #ffffff22;color:#e0f8ff}
 .msg.friday b{color:#00f0ff}
 .voice-select{width:100%;background:#000;border:1px solid #00f0ff66;color:#00f0ff;padding:6px;font-size:9px;font-family:'Orbitron';margin-top:6px}
-.contacts{border-top:2px solid #00f0ff33;padding:10px;max-height:200px;overflow-y:auto}
-.contacts::-webkit-scrollbar{width:6px}.contacts::-webkit-scrollbar-thumb{background:#00f0ff44}
-.contact-item{display:flex;justify-content:space-between;align-items:center;background:rgba(0,240,255,0.06);border:1px solid #00f0ff22;padding:6px 8px;margin-bottom:4px;font-size:11px}
-.call-btn{background:#00ff88;color:#000;border:none;padding:3px 8px;font-size:9px;cursor:pointer;margin-left:4px;font-family:'Orbitron'}
-.sms-btn{background:#ffaa00;color:#000;border:none;padding:3px 8px;font-size:9px;cursor:pointer;margin-left:4px;font-family:'Orbitron'}
+.contacts{border-top:2px solid #00f0ff33;padding:10px;max-height:180px;overflow-y:auto}
+.contacts h4{font-family:'Orbitron';font-size:9px;margin-bottom:6px}
+.contact-item{display:flex;justify-content:space-between;align-items:center;background:rgba(0,240,255,0.06);border:1px solid #00f0ff22;padding:5px 8px;margin-bottom:4px;font-size:11px}
 </style>
 </head>
 <body>
-<div class="top-bar"><span>MARK-85 v203 - FULL ANSWER + INDIAN VOICE + SCROLL</span><span style="opacity:0.4;margin-left:10px">|</span><span id="live-time" style="margin-left:10px">--:--:--</span><span style="margin-left:auto" id="voice-name">VOICE: LOADING...</span></div>
+<div class="top-bar"><span>MARK-85 v204 - MEMORY SAVE EDITION</span><span style="margin-left:auto" id="voice-name">VOICE: LOADING...</span><span style="margin-left:15px" id="live-time">--:--:--</span></div>
 <div class="main">
 <div class="left">
 <h3>// APP MATRIX</h3>
 <div class="app-grid" id="appGrid"></div>
-<div class="energy-ring"><div style="font-family:'Orbitron';font-size:32px;font-weight:900">102%</div><div style="font-size:9px;letter-spacing:2px">ARC REACTOR</div></div>
-<div>
+<div class="energy-ring"><div style="font-family:'Orbitron';font-size:28px;font-weight:900">102%</div><div style="font-size:8px;letter-spacing:2px">ARC REACTOR</div></div>
 <button class="q-btn bluetooth" onclick="connectBluetooth()">📱 CONNECT PHONE</button>
 <button class="q-btn voice-active" onclick="startVoice()">🎤 HEY FRIDAY VOICE</button>
 <button class="q-btn" onclick="toggleVoice()" id="voiceToggle">🔊 VOICE: ON</button>
 <select id="voiceList" class="voice-select" onchange="changeVoice()"><option>Loading Indian voices...</option></select>
-<button class="q-btn" onclick="clearChat()" style="background:rgba(255,255,255,0.08);color:#aaa">🗑️ CLEAR CHAT</button>
-<input id="customApp" placeholder="Any app name..." style="background:#000;border:1px solid #00f0ff;color:#00f0ff;padding:8px;font-size:10px;margin-top:5px;width:100%">
-<button class="q-btn" onclick="openCustomApp()" style="background:rgba(0,240,255,0.2)">🚀 OPEN ANY APP</button>
-</div>
+<button class="q-btn" onclick="clearChat()" style="background:rgba(255,0,0,0.15);border-color:#ff4444;color:#ff8888">🗑️ CLEAR ALL MEMORY</button>
+<button class="q-btn" onclick="exportChat()" style="background:rgba(255,255,255,0.08)">💾 EXPORT CHAT</button>
 </div>
 <div class="center">
 <div class="reactor"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3" onclick="startVoice()"><div class="core"></div></div></div>
 <div class="brand">DH²</div>
-<div style="font-size:9px;letter-spacing:5px;opacity:0.6">TEJA'S FRIDAY OS v203</div>
-<div class="input-box"><input id="cmd" placeholder="open youtube / explain AI fully / ela unnav..."><button id="exec" onclick="send()">EXECUTE</button></div>
+<div style="font-size:9px;letter-spacing:4px;opacity:0.6">TEJA'S FRIDAY v204 - MEMORY</div>
+<div class="input-box"><input id="cmd" placeholder="Type... open youtube / full explain chey..."><button id="exec" onclick="send()">EXECUTE</button></div>
 </div>
 <div class="right">
-<div class="right-header">
-<span>// FRIDAY LOG</span>
-<div class="scroll-controls">
-<button onclick="scrollChat('up')">▲ UP</button>
-<button onclick="scrollChat('down')">▼ DOWN</button>
-<button onclick="scrollChat('bottom')">⬇ BOTTOM</button>
-</div>
-</div>
-<div class="chat-area" id="chat"><div class="msg friday"><b>FRIDAY:</b> Hi Boss Teja! v203 ready!
-- Full detailed answers vastayi ippudu (cut avvadu)
-- Scroll up/down buttons pettanu right side top lo
-- Indian female voice select chey - dropdown lo Heera select chesko
-Try chey Boss!</div></div>
-<div class="contacts"><h4>// CALL / SMS</h4><div id="contactList"></div><div style="display:flex;gap:5px;margin-top:8px"><input id="cname" placeholder="Name" style="flex:1;background:#000;border:1px solid #00f0ff33;color:#00f0ff;padding:5px;font-size:10px"><input id="cphone" placeholder="Number" style="flex:1;background:#000;border:1px solid #00f0ff33;color:#00f0ff;padding:5px;font-size:10px"><button onclick="addContact()" style="background:#00f0ff;color:#000;border:none;padding:5px 10px;font-family:'Orbitron';font-size:9px">ADD</button></div></div>
+<div class="right-header"><span>// FRIDAY MEMORY - AUTO SAVE</span><div class="scroll-controls"><button onclick="scrollChat('up')">▲</button><button onclick="scrollChat('down')">▼</button><button onclick="scrollChat('bottom')">⬇</button></div></div>
+<div class="chat-area" id="chat"></div>
+<div class="contacts"><h4>// CALL / SMS - Saved</h4><div id="contactList"></div></div>
 </div>
 </div>
 <script>
-const ALL_APPS={youtube:"https://youtube.com",google:"https://google.com",gmail:"https://mail.google.com",github:"https://github.com",instagram:"https://instagram.com",facebook:"https://facebook.com",chatgpt:"https://chat.openai.com",maps:"https://maps.google.com",drive:"https://drive.google.com",netflix:"https://netflix.com",spotify:"https://open.spotify.com",whatsapp:"https://web.whatsapp.com",linkedin:"https://linkedin.com",twitter:"https://x.com",hotstar:"https://hotstar.com",prime:"https://primevideo.com",zomato:"https://zomato.com",swiggy:"https://swiggy.com",flipkart:"https://flipkart.com",amazon:"https://amazon.in",irctc:"https://irctc.co.in",paytm:"https://paytm.com",phonepe:"https://phonepe.com",notion:"https://notion.so",canva:"https://canva.com",figma:"https://figma.com",reddit:"https://reddit.com",discord:"https://discord.com",telegram:"https://web.telegram.org"};
+const ALL_APPS={youtube:"https://youtube.com",google:"https://google.com",gmail:"https://mail.google.com",github:"https://github.com",instagram:"https://instagram.com",facebook:"https://facebook.com",chatgpt:"https://chat.openai.com",netflix:"https://netflix.com",hotstar:"https://hotstar.com",prime:"https://primevideo.com",zomato:"https://zomato.com",flipkart:"https://flipkart.com",amazon:"https://amazon.in"};
 function renderApps(){let g=document.getElementById('appGrid');g.innerHTML='';for(let n in ALL_APPS){let b=document.createElement('div');b.className='app-btn';b.innerHTML=n.toUpperCase();b.onclick=()=>openApp(n);g.appendChild(b);}} renderApps();
-function openApp(name){let url=ALL_APPS[name.toLowerCase()]||`https://www.google.com/search?q=${name}`;window.open(url,'_blank');addMsg('friday',`Opening <b>${name.toUpperCase()}</b>, Boss!`);}
-function openCustomApp(){let v=document.getElementById('customApp').value.trim().toLowerCase();if(!v)return;window.open(`https://${v}.com`,'_blank');addMsg('friday',`Opening <b>${v}</b>!`);}
+function openApp(name){let url=ALL_APPS[name.toLowerCase()]||`https://www.google.com/search?q=${name}`;window.open(url,'_blank');addMsg('friday',`Opening <b>${name.toUpperCase()}</b>, Boss!`,true);}
 
-// SCROLL CONTROLS - NEW
-function scrollChat(dir){
+// MEMORY SYSTEM - LOCAL + SERVER
+let chatHistory = JSON.parse(localStorage.getItem('dh2_chat_history')||'[]');
+let chatMsgs = JSON.parse(localStorage.getItem('dh2_chat_msgs')||'[]');
+
+function saveToLocal(){
+  localStorage.setItem('dh2_chat_history', JSON.stringify(chatHistory.slice(-20)));
+  localStorage.setItem('dh2_chat_msgs', JSON.stringify(chatMsgs.slice(-50)));
+}
+function loadLocalChat(){
   let chat=document.getElementById('chat');
-  if(dir==='up') chat.scrollBy({top:-200,behavior:'smooth'});
-  if(dir==='down') chat.scrollBy({top:200,behavior:'smooth'});
-  if(dir==='bottom') chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'});
-  if(dir==='top') chat.scrollTo({top:0,behavior:'smooth'});
-}
-
-// INDIAN FEMALE VOICE - FULL FIX
-let indianFemaleVoice=null;let voiceEnabled=true;let allVoices=[];
-function loadVoices(){
-  allVoices=speechSynthesis.getVoices();
-  let select=document.getElementById('voiceList');
-  select.innerHTML='';
-  // Filter Indian voices only
-  let indianVoices = allVoices.filter(v=>v.lang.includes('IN') || v.name.toLowerCase().includes('india') || v.name.toLowerCase().includes('heera'));
-  let voicesToShow = indianVoices.length>0? indianVoices : allVoices;
-  voicesToShow.forEach((v,i)=>{
-    let opt=document.createElement('option');
-    opt.value=i; opt.text=`${v.name} (${v.lang}) ${v.name.toLowerCase().includes('female')||v.name.includes('Heera')?' - FEMALE':''}`;
-    if(v.name.includes('Heera')||(v.lang==='en-IN'&&v.name.toLowerCase().includes('female'))){
-      opt.selected=true; indianFemaleVoice=v;
-    }
-    select.appendChild(opt);
-  });
-  if(!indianFemaleVoice){
-    indianFemaleVoice = allVoices.find(v=>v.name.includes('Heera')) || allVoices.find(v=>v.lang==='en-IN') || allVoices.find(v=>v.name.toLowerCase().includes('female')) || allVoices[0];
+  chat.innerHTML='';
+  if(chatMsgs.length===0){
+    chat.innerHTML='<div class="msg friday"><b>FRIDAY:</b> Hi Boss Teja! Memory system ON. Ippudu nuvvu adigina prathi question save avthundi. Refresh chesina malli vasthundi. Full answers, scroll, Indian voice - all ready!</div>';
+  } else {
+    chatMsgs.forEach(m=>{let div=document.createElement('div');div.className=`msg ${m.who}`;div.innerHTML=m.html;chat.appendChild(div);});
   }
-  document.getElementById('voice-name').innerText=indianFemaleVoice?`VOICE: ${indianFemaleVoice.name.toUpperCase()} - INDIAN FEMALE`:'VOICE: DEFAULT';
+  chat.scrollTo({top:chat.scrollHeight});
 }
-function changeVoice(){
-  let idx=document.getElementById('voiceList').value;
+loadLocalChat();
+
+// SCROLL
+function scrollChat(dir){let c=document.getElementById('chat');if(dir==='up')c.scrollBy({top:-250,behavior:'smooth'});if(dir==='down')c.scrollBy({top:250,behavior:'smooth'});if(dir==='bottom')c.scrollTo({top:c.scrollHeight,behavior:'smooth'});}
+
+// VOICE - INDIAN FEMALE FIX
+let indianFemaleVoice=null, voiceEnabled=true;
+function loadVoices(){
   let voices=speechSynthesis.getVoices();
-  let indianVoices = voices.filter(v=>v.lang.includes('IN') || v.name.toLowerCase().includes('india') || v.name.toLowerCase().includes('heera'));
-  let list = indianVoices.length>0? indianVoices : voices;
-  indianFemaleVoice=list[idx];
-  document.getElementById('voice-name').innerText=`VOICE: ${indianFemaleVoice.name.toUpperCase()}`;
-  speakAsFriday("Hi Boss Teja, I am your Indian FRIDAY, voice changed successfully!");
+  let select=document.getElementById('voiceList');select.innerHTML='';
+  let indianVoices=voices.filter(v=>v.lang.includes('IN')||v.name.toLowerCase().includes('india')||v.name.includes('Heera'));
+  let list=indianVoices.length>0?indianVoices:voices;
+  list.forEach((v,i)=>{let opt=document.createElement('option');opt.value=i;opt.text=`${v.name} (${v.lang})`;if(v.name.includes('Heera')){opt.selected=true;indianFemaleVoice=v;}select.appendChild(opt);});
+  if(!indianFemaleVoice) indianFemaleVoice=list.find(v=>v.lang==='en-IN')||list[0];
+  document.getElementById('voice-name').innerText=indianFemaleVoice?indianFemaleVoice.name.toUpperCase():'VOICE READY';
 }
+function changeVoice(){let voices=speechSynthesis.getVoices();let indianVoices=voices.filter(v=>v.lang.includes('IN')||v.name.includes('Heera'));let list=indianVoices.length>0?indianVoices:voices;indianFemaleVoice=list[document.getElementById('voiceList').value];speakAsFriday("Hi Boss, Indian voice changed!");}
 if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=loadVoices; setTimeout(loadVoices,800);
+function toggleVoice(){voiceEnabled=!voiceEnabled;document.getElementById('voiceToggle').innerText=voiceEnabled?'🔊 VOICE: ON':'🔇 VOICE: OFF';if(!voiceEnabled)speechSynthesis.cancel();}
+function speakAsFriday(text){if(!voiceEnabled)return;speechSynthesis.cancel();setTimeout(()=>{let u=new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g,''));if(indianFemaleVoice)u.voice=indianFemaleVoice;u.lang='en-IN';u.rate=0.88;u.pitch=1.22;speechSynthesis.speak(u);},100);}
 
-function toggleVoice(){voiceEnabled=!voiceEnabled;document.getElementById('voiceToggle').innerText=voiceEnabled?'🔊 VOICE: ON':'🔇 VOICE: OFF';if(!voiceEnabled) speechSynthesis.cancel();}
-function speakAsFriday(text){
-  if(!voiceEnabled||!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  setTimeout(()=>{
-    let clean=text.replace(/<[^>]*>/g,'');
-    let u=new SpeechSynthesisUtterance(clean);
-    if(indianFemaleVoice) u.voice=indianFemaleVoice;
-    u.lang='en-IN'; u.rate=0.88; u.pitch=1.22; u.volume=1;
-    u.onend=()=>{document.getElementById('cmd').disabled=false;document.getElementById('exec').disabled=false;document.getElementById('cmd').focus();};
-    speechSynthesis.speak(u);
-  },80);
-}
-
-function addMsg(who,text){
-  let chat=document.getElementById('chat');let div=document.createElement('div');div.className=`msg ${who}`;div.innerHTML=(who==='user'?'<b>BOSS:</b> ':'<b>FRIDAY:</b> ')+text;chat.appendChild(div);
+function addMsg(who,text,skipSave=false){
+  let chat=document.getElementById('chat');
+  let html=(who==='user'?'<b>BOSS:</b> ':'<b>FRIDAY:</b> ')+text;
+  let div=document.createElement('div');div.className=`msg ${who}`;div.innerHTML=html;chat.appendChild(div);
   chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'});
   if(who==='friday') speakAsFriday(text);
+  if(!skipSave){
+    chatMsgs.push({who,html});
+    saveToLocal();
+  }
 }
-function clearChat(){document.getElementById('chat').innerHTML='<div class="msg friday"><b>FRIDAY:</b> Chat cleared Boss!</div>';speechSynthesis.cancel();}
+function clearChat(){
+  if(!confirm('Boss full chat delete cheyala?')) return;
+  chatMsgs=[];chatHistory=[];localStorage.removeItem('dh2_chat_msgs');localStorage.removeItem('dh2_chat_history');
+  fetch('/clear_history',{method:'POST'});
+  document.getElementById('chat').innerHTML='<div class="msg friday"><b>FRIDAY:</b> Memory cleared Boss!</div>';
+  speechSynthesis.cancel();
+}
+function exportChat(){let txt=chatMsgs.map(m=>m.html.replace(/<[^>]*>/g,'')).join('\n');let blob=new Blob([txt],{type:'text/plain'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='FRIDAY_chat_'+new Date().toISOString().slice(0,10)+'.txt';a.click();}
 
-let isBusy=false;let chatHistory=[];
+let isBusy=false;
 async function send(){
   if(isBusy) return;
-  let input=document.getElementById('cmd');let msg=input.value.trim();if(!msg) return;
-  isBusy=true; input.disabled=true; document.getElementById('exec').disabled=true;
-  addMsg('user',msg); input.value='';
+  let input=document.getElementById('cmd');let msg=input.value.trim();if(!msg)return;
+  isBusy=true;input.disabled=true;
+  addMsg('user',msg);input.value='';
   let typingId='typing-'+Date.now();
-  document.getElementById('chat').innerHTML+=`<div class="msg friday" id="${typingId}"><b>FRIDAY:</b> <i>typing full answer...</i></div>`;
+  document.getElementById('chat').innerHTML+=`<div class="msg friday" id="${typingId}"><b>FRIDAY:</b> <i>full answer typing...</i></div>`;
   document.getElementById('chat').scrollTo({top:document.getElementById('chat').scrollHeight});
-  let lower=msg.toLowerCase();
-  if(lower.startsWith('open ')){let a=lower.replace('open ','').trim();document.getElementById(typingId)?.remove();openApp(a);isBusy=false;input.disabled=false;document.getElementById('exec').disabled=false;input.focus();return;}
   try{
     let res=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,history:chatHistory})});
     let data=await res.json();
     document.getElementById(typingId)?.remove();
     addMsg('friday',data.reply);
     chatHistory.push({role:"user",content:msg},{role:"assistant",content:data.reply});
-    if(chatHistory.length>8) chatHistory=chatHistory.slice(-8);
+    if(chatHistory.length>12) chatHistory=chatHistory.slice(-12);
+    saveToLocal();
     if(data.url) window.open(data.url,'_blank');
   }catch(e){document.getElementById(typingId)?.remove();addMsg('friday','Network slow Boss.');}
-  isBusy=false;input.disabled=false;document.getElementById('exec').disabled=false;input.focus();
+  isBusy=false;input.disabled=false;input.focus();
 }
-let contacts=JSON.parse(localStorage.getItem('dh2_contacts')||'[{"name":"Amma","phone":""},{"name":"Nanna","phone":""}]');
-function renderContacts(){let l=document.getElementById('contactList');l.innerHTML='';contacts.forEach(c=>{l.innerHTML+=`<div class="contact-item"><span>${c.name} - ${c.phone||'No'}</span><span><button class="call-btn" onclick="makeCall('${c.name}')">CALL</button><button class="sms-btn" onclick="makeSMS('${c.name}','')">SMS</button></span></div>`});}
-function addContact(){let n=document.getElementById('cname').value.trim();let p=document.getElementById('cphone').value.trim();if(!n||!p)return alert('Name & Number');contacts.push({name:n,phone:p});localStorage.setItem('dh2_contacts',JSON.stringify(contacts));renderContacts();document.getElementById('cname').value='';document.getElementById('cphone').value='';}
-function makeCall(name){let c=contacts.find(x=>x.name.toLowerCase()===name.toLowerCase());if(!c||!c.phone){addMsg('friday',`${name} number ledu.`);return;}window.location.href=`tel:${c.phone}`;}
-function makeSMS(name,text){let c=contacts.find(x=>x.name.toLowerCase()===name.toLowerCase());if(!c||!c.phone){addMsg('friday',`${name} number ledu.`);return;}let m=text||prompt(`Message to ${c.name}:`);if(!m)return;window.location.href=`sms:${c.phone}?body=${encodeURIComponent(m)}`;}
+let contacts=JSON.parse(localStorage.getItem('dh2_contacts')||'[]');
+function renderContacts(){let l=document.getElementById('contactList');l.innerHTML=contacts.length? '': '<div style="font-size:10px;opacity:0.6">No contacts yet</div>'; contacts.forEach(c=>{l.innerHTML+=`<div class="contact-item"><span>${c.name}</span><span>${c.phone}</span></div>`});}
 renderContacts();
-async function connectBluetooth(){addMsg('friday','Scanning phone...');try{if(!navigator.bluetooth){addMsg('friday','Chrome lo try chey Boss.');return;}let d=await navigator.bluetooth.requestDevice({acceptAllDevices:true});addMsg('friday',`Connected to <b>${d.name}</b>!`);}catch(e){addMsg('friday',`Bluetooth: ${e.message}`);}}
-function startVoice(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){addMsg('friday','Voice not supported.');return;}let rec=new SR();rec.lang='te-IN';rec.start();addMsg('friday','Listening Boss...');rec.onresult=(e)=>{document.getElementById('cmd').value=e.results[0][0].transcript;send();}}
+function startVoice(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return;let rec=new SR();rec.lang='te-IN';rec.start();addMsg('friday','Listening Boss...',true);rec.onresult=(e)=>{document.getElementById('cmd').value=e.results[0][0].transcript;send();}}
 setInterval(()=>{document.getElementById('live-time').innerText=new Date().toLocaleTimeString();},1000);
 document.getElementById('cmd').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 </script>
