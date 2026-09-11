@@ -15,45 +15,34 @@ def home():
 @app.route('/ask', methods=['POST'])
 def ask():
     data = request.get_json()
-    user_msg = data.get('message', '').strip()
+    user_msg = data.get('message','').strip()
     lower_msg = user_msg.lower()
 
     apps = {
-        "youtube": "https://youtube.com",
-        "google": "https://google.com",
-        "gmail": "https://mail.google.com",
-        "github": "https://github.com",
-        "instagram": "https://instagram.com",
-        "chatgpt": "https://chat.openai.com",
-        "maps": "https://maps.google.com",
-        "drive": "https://drive.google.com"
+        "youtube":"https://youtube.com","google":"https://google.com",
+        "gmail":"https://mail.google.com","github":"https://github.com",
+        "instagram":"https://instagram.com","chatgpt":"https://chat.openai.com"
     }
-
-    for name, url in apps.items():
-        if f"open {name}" in lower_msg or lower_msg == name:
-            return jsonify({'reply': f'Opening {name.upper()}, Boss!', 'url': url})
-
-    if "time" in lower_msg:
-        now = datetime.datetime.now().strftime("%I:%M %p")
-        return jsonify({'reply': f'Time is {now}, Boss.'})
+    for name,url in apps.items():
+        if f"open {name}" in lower_msg or lower_msg==name:
+            return jsonify({'reply':f'Opening {name.upper()}, Boss!','url':url})
 
     if not client:
-        return jsonify({'reply': 'Boss, GROQ_API_KEY Render Environment lo ledu.'})
+        return jsonify({'reply':'Boss, GROQ_API_KEY missing in Render Environment.'})
 
     try:
-        # NEW MODEL - 2026 WORKING
+        # 2026 NEW WORKING MODEL - Llama retired
         completion = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=[
-                {"role": "system", "content": "You are FRIDAY built by Boss Teja for DH². Reply in same language user speaks (Telugu/Hindi/English). Short, witty, call him Boss. Under 25 words."},
-                {"role": "user", "content": user_msg}
+                {"role":"system","content":"You are FRIDAY built by Boss Teja for DH². Reply same language as user. Short, witty, call him Boss."},
+                {"role":"user","content":user_msg}
             ],
-            max_tokens=120
+            max_tokens=150
         )
         return jsonify({'reply': completion.choices[0].message.content})
     except Exception as e:
-        return jsonify({'reply': f"Boss link issue: {str(e)[:120]}"})
+        return jsonify({'reply': f"Error: {str(e)[:150]}"})
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT",5000)))
