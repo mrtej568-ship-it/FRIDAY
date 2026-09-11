@@ -2,181 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DH² // FRIDAY v205 SCROLL FIX</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+<title>DH² // FRIDAY v300 HOLOGRAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#010a0f;color:#00f0ff;font-family:'Rajdhani',sans-serif;height:100vh;overflow:hidden}
-.top-bar{height:28px;border-bottom:2px solid #00f0ff55;display:flex;align-items:center;padding:0 12px;font-family:'Orbitron';font-size:9px;letter-spacing:2px;background:rgba(0,240,255,0.05)}
-.main{display:grid;grid-template-columns:340px 1fr 380px;height:calc(100vh - 28px)}
-.left{border-right:2px solid #00f0ff33;padding:12px;background:rgba(0,20,30,0.6);overflow-y:scroll}
-.left::-webkit-scrollbar{width:8px}.left::-webkit-scrollbar-thumb{background:#00f0ff}
-.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.app-btn{background:rgba(0,240,255,0.08);border:1px solid #00f0ff66;color:#00f0ff;padding:10px 5px;text-align:center;cursor:pointer;font-family:'Orbitron';font-size:9px}
-.app-btn:hover{background:#00f0ff;color:#000}
-.q-btn{width:100%;padding:8px;font-size:9px;font-family:'Orbitron';cursor:pointer;margin-bottom:5px;border:1px solid #ff0066;background:rgba(255,0,100,0.15);color:#ff6a9d}
-.q-btn.bluetooth{border-color:#00ff88;color:#00ff88;background:rgba(0,255,136,0.15)}
-.q-btn.voice-active{border-color:#00f0ff;color:#fff;background:rgba(0,240,255,0.2)}
-.energy-ring{width:120px;height:120px;border:3px solid #00f0ff;border-radius:50%;margin:15px auto;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.center{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.reactor{width:300px;height:300px;position:relative;display:flex;align-items:center;justify-content:center}
-.ring{position:absolute;border-radius:50%;border:1px solid #00f0ff}
-.r1{width:100%;height:100%;border-top:3px solid #ff0055;border-right:3px solid transparent;animation:spin 3s linear infinite}
-.r2{width:80%;height:80%;border:2px dashed #00f0ff44;animation:spin 6s linear infinite reverse}
-.r3{width:60%;height:60%;background:radial-gradient(circle, #00f0ff, #004455);box-shadow:0 0 60px #00f0ff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+body{background:#00080f;color:#00eaff;font-family:'Rajdhani',sans-serif;height:100vh;overflow:hidden;cursor:crosshair}
+.bg{background:radial-gradient(ellipse at center, #0a2e3a 0%, #010a0f 70%);position:absolute;inset:0;z-index:0}
+.holo-grid{position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,234,255,0.03) 1px, transparent 1px), linear-gradient(rgba(0,234,255,0.03) 1px, transparent 1px);background-size:50px 50px;opacity:0.5}
+.top{position:relative;z-index:10;height:32px;border-bottom:2px solid #00eaff66;display:flex;align-items:center;padding:0 15px;font-family:'Orbitron';font-size:10px;letter-spacing:3px;background:linear-gradient(90deg, rgba(0,234,255,0.1), transparent)}
+.holo-container{position:relative;z-index:10;display:grid;grid-template-columns:280px 1fr 300px;height:calc(100vh - 32px);padding:10px;gap:10px}
+
+/* LEFT - Like your pic */
+.left{border:1px solid #00eaff44;background:rgba(0,20,30,0.4);backdrop-filter:blur(10px);padding:10px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.left::-webkit-scrollbar{width:6px}.left::-webkit-scrollbar-thumb{background:#00eaff66;box-shadow:0 0 10px #00eaff}
+.gauge{width:180px;height:180px;border:2px solid #00eaff;border-radius:50%;position:relative;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 0 30px #00eaff88, inset 0 0 20px rgba(0,234,255,0.2);cursor:grab;transition:0.3s}
+.gauge:active{cursor:grabbing;transform:scale(1.05);box-shadow:0 0 60px #00eaff}
+.gauge-inner{position:absolute;inset:8px;border:1px dashed #00eaff44;border-radius:50%;animation:spin 12s linear infinite}
+.gauge-value{font-family:'Orbitron';font-size:42px;font-weight:900;text-shadow:0 0 20px #00eaff}
+.gauge-label{font-size:9px;letter-spacing:3px;opacity:0.7}
 @keyframes spin{to{transform:rotate(360deg)}}
-.core{width:20px;height:20px;background:#fff;transform:rotate(45deg)}
-.brand{font-family:'Orbitron';font-weight:900;font-size:32px;letter-spacing:8px;margin-top:15px}
-.input-box{position:absolute;bottom:25px;width:85%;display:flex;gap:8px}
-#cmd{flex:1;background:rgba(0,0,0,0.7);border:2px solid #00f0ff;color:#00f0ff;padding:12px;font-size:11px;font-family:'Orbitron';outline:none}
-#exec{background:#00f0ff;color:#000;border:none;padding:0 18px;font-family:'Orbitron';font-weight:900;cursor:pointer}
+.mini-gauge{width:100%;height:70px;border:1px solid #00eaff33;background:rgba(0,234,255,0.05);padding:8px;position:relative;overflow:hidden}
+.mini-gauge::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;background:linear-gradient(90deg, transparent, #00eaff, transparent);animation:scan 2s infinite}
+@keyframes scan{to{left:100%}}
+.app-matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.app-chip{border:1px solid #00eaff55;background:rgba(0,234,255,0.08);padding:8px 4px;text-align:center;font-family:'Share Tech Mono';font-size:8px;cursor:pointer;transition:0.2s;position:relative;overflow:hidden}
+.app-chip:hover{background:#00eaff;color:#000;box-shadow:0 0 20px #00eaff;transform:translateY(-2px)}
+.app-chip::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);transform:translateX(-100%);transition:0.5s}
+.app-chip:hover::after{transform:translateX(100%)}
 
-/* RIGHT - SCROLL FIX 100% */
-.right{border-left:2px solid #00f0ff33;background:rgba(0,10,15,0.95);display:flex;flex-direction:column;height:100%;overflow:hidden}
-.right-header{height:36px;padding:0 10px;border-bottom:1px solid #00f0ff33;display:flex;justify-content:space-between;align-items:center;background:rgba(0,240,255,0.05);flex-shrink:0}
-.right-header span{font-family:'Orbitron';font-size:9px}
-.scroll-btns{display:flex;gap:4px}
-.scroll-btns button{background:#00f0ff;color:#000;border:none;padding:4px 10px;font-family:'Orbitron';font-size:10px;font-weight:700;cursor:pointer;border-radius:3px}
-.scroll-btns button:hover{background:#fff}
+/* CENTER - MAIN HOLOGRAM REACTOR - Like pic */
+.center{position:relative;display:flex;align-items:center;justify-content:center;border:1px solid #00eaff22;background:radial-gradient(circle at center, rgba(0,234,255,0.06) 0%, transparent 60%)}
+.central-holo{width:480px;height:480px;position:relative;display:flex;align-items:center;justify-content:center;cursor:grab}
+.central-holo:active{cursor:grabbing}
+.ring{position:absolute;border-radius:50%;border:1px solid #00eaff}
+.r1{width:100%;height:100%;border-top:3px solid #ff0040;border-right:3px solid transparent;border-bottom:1px solid #00eaff44;animation:spin 4s linear infinite;box-shadow:0 0 30px rgba(255,0,64,0.5)}
+.r2{width:88%;height:88%;border:2px dashed #00eaff33;animation:spin 8s linear infinite reverse}
+.r3{width:72%;height:72%;border:1px solid #00eaff66;box-shadow:inset 0 0 30px rgba(0,234,255,0.3)}
+.r4{width:54%;height:54%;background:radial-gradient(circle, #00eaff, #004455);border:3px solid #ff0040;box-shadow:0 0 80px #00eaff, 0 0 40px #ff0040;display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite;cursor:pointer}
+@keyframes pulse{0%,100%{box-shadow:0 0 80px #00eaff, 0 0 40px #ff0040}50%{box-shadow:0 0 120px #00eaff, 0 0 60px #ff0040, 0 0 20px #fff}}
+.core{width:22px;height:22px;background:#fff;transform:rotate(45deg);box-shadow:0 0 20px #fff;animation:corePulse 1s infinite alternate}
+@keyframes corePulse{to{transform:rotate(45deg) scale(1.3)}}
+.tick{position:absolute;width:100%;height:100%;animation:spin 20s linear infinite}
+.tick::before{content:'';position:absolute;top:0;left:50%;width:2px;height:10px;background:#00eaff66}
+.stark-logo{position:absolute;bottom:-40px;font-family:'Orbitron';font-weight:900;font-size:14px;letter-spacing:6px;color:#00eaff;text-shadow:0 0 20px #00eaff}
+.input-holo{position:absolute;bottom:30px;width:80%;display:flex;gap:8px;z-index:20}
+#cmd{background:rgba(0,0,0,0.8);border:2px solid #00eaff;backdrop-filter:blur(10px);color:#00eaff;padding:12px;font-family:'Share Tech Mono';font-size:12px;flex:1;outline:none;box-shadow:0 0 20px rgba(0,234,255,0.3)}
+#cmd:focus{box-shadow:0 0 40px #00eaff}
+#exec{background:#00eaff;color:#000;border:none;padding:0 20px;font-family:'Orbitron';font-weight:900;cursor:pointer;box-shadow:0 0 20px #00eaff;transition:0.2s}
+#exec:hover{background:#fff;box-shadow:0 0 40px #00eaff}
 
-/* CHAT AREA - FIXED HEIGHT + SCROLL ALWAYS VISIBLE */
-.chat-area{
-  height:calc(100% - 36px - 180px);
-  overflow-y:scroll!important;
-  overflow-x:hidden;
-  padding:12px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  background:rgba(0,0,0,0.3);
-  scroll-behavior:smooth;
-}
-.chat-area::-webkit-scrollbar{width:10px!important; display:block!important}
-.chat-area::-webkit-scrollbar-track{background:#001a22!important; border:1px solid #00f0ff33}
-.chat-area::-webkit-scrollbar-thumb{background:#00f0ff!important; border-radius:10px; box-shadow:0 0 10px #00f0ff}
-.chat-area::-webkit-scrollbar-thumb:hover{background:#fff!important}
-.msg{padding:10px;border-radius:6px;max-width:95%;font-size:13px;line-height:1.5;white-space:pre-wrap;word-break:break-word;flex-shrink:0}
-.msg.user{align-self:flex-end;background:rgba(0,240,255,0.15);border:1px solid #00f0ff66;color:#a0f0ff}
-.msg.friday{align-self:flex-start;background:rgba(255,255,255,0.07);border:1px solid #ffffff22;color:#e0f8ff}
-.msg.friday b{color:#00f0ff}
-.contacts{height:180px;border-top:2px solid #00f0ff33;padding:10px;overflow-y:scroll;flex-shrink:0;background:rgba(0,20,30,0.5)}
-.contacts h4{font-family:'Orbitron';font-size:9px;margin-bottom:6px}
-.voice-select{width:100%;background:#000;border:1px solid #00f0ff66;color:#00f0ff;padding:6px;font-size:9px;font-family:'Orbitron';margin-top:6px}
+/* RIGHT - Weather + Chat like pic */
+.right{border:1px solid #00eaff44;background:rgba(0,10,20,0.5);backdrop-filter:blur(10px);display:flex;flex-direction:column;overflow:hidden}
+.weather-panel{padding:10px;border-bottom:1px solid #00eaff22;background:rgba(0,234,255,0.05)}
+.chat-holo{flex:1;overflow-y:scroll;padding:10px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
+.chat-holo::-webkit-scrollbar{width:8px}.chat-holo::-webkit-scrollbar-thumb{background:#00eaff;box-shadow:0 0 10px #00eaff}
+.msg{padding:10px;border:1px solid #00eaff22;background:rgba(0,234,255,0.05);font-size:12px;line-height:1.4;backdrop-filter:blur(5px);position:relative;overflow:hidden}
+.msg::before{content:'';position:absolute;left:0;top:0;width:2px;height:100%;background:#00eaff}
+.msg.user{border-color:#ff004066;background:rgba(255,0,64,0.08);align-self:flex-end;max-width:90%}
+.msg.user::before{background:#ff0040}
+.msg.friday{align-self:flex-start;max-width:90%;box-shadow:0 0 15px rgba(0,234,255,0.1)}
+.holo-btn{background:rgba(0,234,255,0.1);border:1px solid #00eaff66;color:#00eaff;padding:6px 10px;font-family:'Orbitron';font-size:8px;cursor:pointer;transition:0.2s}
+.holo-btn:hover{background:#00eaff;color:#000;box-shadow:0 0 15px #00eaff}
 </style>
 </head>
 <body>
-<div class="top-bar"><span>MARK-85 v205 - SCROLL FIX</span><span style="margin-left:auto" id="voice-name">VOICE: LOADING</span><span style="margin-left:12px" id="live-time">--:--:--</span></div>
-<div class="main">
+<div class="bg"><div class="holo-grid"></div></div>
+<div class="top"><span>F.R.I.D.A.Y. 2026 • STARK INDUSTRIES • QUANTUM AI CORE v12.6 • ACTIVE</span><span style="margin-left:auto" id="voice-name">VOICE: HEERA INDIAN</span><span style="margin-left:15px" id="live-time">01:06:39 • 21 JUN 2026</span><span style="margin-left:15px">13°C • MOSCOW, RUSSIA</span></div>
+<div class="holo-container">
 <div class="left">
-<h3 style="font-family:'Orbitron';font-size:11px;letter-spacing:3px;margin-bottom:10px">// APP MATRIX</h3>
-<div class="app-grid" id="appGrid"></div>
-<div class="energy-ring"><div style="font-family:'Orbitron';font-size:26px;font-weight:900">102%</div><div style="font-size:8px">ARC</div></div>
-<button class="q-btn bluetooth" onclick="connectBluetooth()">📱 CONNECT PHONE</button>
-<button class="q-btn voice-active" onclick="startVoice()">🎤 HEY FRIDAY</button>
-<button class="q-btn" onclick="toggleVoice()" id="voiceToggle">🔊 VOICE: ON</button>
-<select id="voiceList" class="voice-select" onchange="changeVoice()"><option>Loading voices...</option></select>
-<button class="q-btn" onclick="clearChat()" style="border-color:#ff4444;color:#ff8888">🗑️ CLEAR MEMORY</button>
-<button class="q-btn" onclick="testScroll()">🔧 TEST SCROLL - 20 MSGS</button>
+<div class="gauge" id="dateGauge"><div class="gauge-inner"></div><div style="font-size:10px;letter-spacing:2px">Июнь</div><div class="gauge-value">21</div><div class="gauge-label">2026 • FRIDAY</div></div>
+<div class="mini-gauge"><div style="font-family:'Share Tech Mono';font-size:9px">CPU: <span id="cpu">74</span>% • RAM: 28/128 GB</div><div style="height:4px;background:#001a22;margin-top:5px"><div id="cpuBar" style="height:100%;width:62%;background:linear-gradient(90deg,#00eaff,#00ff88)"></div></div><div style="font-size:8px;margin-top:4px">QUANTUM CORE: 92% • TEMP: 41°C</div></div>
+<div class="mini-gauge"><div style="font-family:'Orbitron';font-size:10px">Энергия 100% - ARC REACTOR</div><div style="width:60px;height:60px;border:2px solid #00eaff;border-radius:50%;margin:5px auto;display:flex;align-items:center;justify-content:center;font-family:'Orbitron';font-weight:900">102%</div></div>
+<h3 style="font-family:'Orbitron';font-size:9px;letter-spacing:3px">// APP MATRIX - TOUCH TO OPEN</h3>
+<div class="app-matrix" id="appGrid"></div>
+<div style="display:flex;gap:5px;margin-top:10px"><button class="holo-btn" onclick="connectBluetooth()">📱 BT CONNECT</button><button class="holo-btn" onclick="startVoice()">🎤 VOICE</button><button class="holo-btn" onclick="clearChat()">🗑️ CLEAR</button></div>
+<select id="voiceList" style="width:100%;background:#000;border:1px solid #00eaff55;color:#00eaff;padding:5px;font-size:8px;margin-top:5px"><option>Loading Indian voices...</option></select>
 </div>
 <div class="center">
-<div class="reactor"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3" onclick="startVoice()"><div class="core"></div></div></div>
-<div class="brand">DH²</div>
-<div style="font-size:9px;letter-spacing:4px;opacity:0.6">SCROLL FIX v205</div>
-<div class="input-box"><input id="cmd" placeholder="Type full question..."><button id="exec" onclick="send()">EXECUTE</button></div>
+<div class="central-holo" id="mainHolo">
+<div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4" onclick="startVoice()"><div class="core"></div></div>
+<div class="tick" style="transform:rotate(0deg)"></div><div class="tick" style="transform:rotate(90deg)"></div><div class="tick" style="transform:rotate(180deg)"></div><div class="tick" style="transform:rotate(270deg)"></div>
+<div class="stark-logo">STARK INDUSTRIES • FRIDAY 2026</div>
+</div>
+<div class="input-holo"><input id="cmd" placeholder="Touch hologram or type: open youtube / explain black hole..."><button id="exec" onclick="send()">EXECUTE</button></div>
 </div>
 <div class="right">
-<div class="right-header"><span>// FRIDAY LOG - SCROLLABLE</span><div class="scroll-btns"><button onclick="scrollChat('top')">TOP ▲</button><button onclick="scrollChat('up')">UP ▲</button><button onclick="scrollChat('down')">DOWN ▼</button><button onclick="scrollChat('bottom')">BOTTOM ▼</button></div></div>
-<div class="chat-area" id="chat"></div>
-<div class="contacts"><h4>// CONTACTS</h4><div id="contactList"></div></div>
+<div class="weather-panel"><div style="display:flex;justify-content:space-between"><span style="font-family:'Orbitron';font-size:18px">13°C</span><span>🌙 Ясно</span></div><div style="font-size:9px;opacity:0.7;margin-top:5px">Влажность: 77% • Ветер: 3 км/ч • Закат: 10:18</div><div style="margin-top:8px;display:flex;gap:4px"><button class="holo-btn" onclick="scrollChat('top')">TOP</button><button class="holo-btn" onclick="scrollChat('up')">▲ UP</button><button class="holo-btn" onclick="scrollChat('down')">▼ DOWN</button><button class="holo-btn" onclick="scrollChat('bottom')">BOTTOM</button></div></div>
+<div class="chat-holo" id="chat"></div>
+<div style="padding:8px;border-top:1px solid #00eaff22;display:flex;gap:5px"><span style="font-size:8px;font-family:'Orbitron'">SECURE NODE: 91.219.164.5 • QUANTUM ENCRYPTED</span></div>
 </div>
 </div>
 <script>
-const ALL_APPS={youtube:"https://youtube.com",google:"https://google.com",gmail:"https://mail.google.com",github:"https://github.com",instagram:"https://instagram.com",facebook:"https://facebook.com",chatgpt:"https://chat.openai.com",netflix:"https://netflix.com",hotstar:"https://hotstar.com",prime:"https://primevideo.com",zomato:"https://zomato.com",amazon:"https://amazon.in"};
-function renderApps(){let g=document.getElementById('appGrid');g.innerHTML='';for(let n in ALL_APPS){let b=document.createElement('div');b.className='app-btn';b.innerHTML=n.toUpperCase();b.onclick=()=>openApp(n);g.appendChild(b);}} renderApps();
-function openApp(name){window.open(ALL_APPS[name]||`https://www.google.com/search?q=${name}`,'_blank');addMsg('friday',`Opening <b>${name.toUpperCase()}</b> Boss!`);}
+const ALL_APPS={youtube:"https://youtube.com",google:"https://google.com",gmail:"https://mail.google.com",github:"https://github.com",instagram:"https://instagram.com",facebook:"https://facebook.com",chatgpt:"https://chat.openai.com",netflix:"https://netflix.com",hotstar:"https://hotstar.com",prime:"https://primevideo.com",zomato:"https://zomato.com",amazon:"https://amazon.in",maps:"https://maps.google.com",drive:"https://drive.google.com",spotify:"https://open.spotify.com"};
+function renderApps(){let g=document.getElementById('appGrid');g.innerHTML='';for(let n in ALL_APPS){let d=document.createElement('div');d.className='app-chip';d.innerText=n.toUpperCase();d.onclick=()=>openApp(n);g.appendChild(d);}} renderApps();
+function openApp(name){window.open(ALL_APPS[name]||`https://www.google.com/search?q=${name}`,'_blank');addMsg('friday',`Opening <b>${name.toUpperCase()}</b> Boss! Hologram link active!`);}
+
+// HOLOGRAM TOUCH DRAG
+let holo=document.getElementById('mainHolo');let isDrag=false, sx=0, sy=0;
+holo.addEventListener('mousedown',e=>{isDrag=true;sx=e.clientX;sy=e.clientY;holo.style.cursor='grabbing'});
+window.addEventListener('mouseup',()=>isDrag=false);
+window.addEventListener('mousemove',e=>{
+  if(!isDrag) return;
+  let dx=(e.clientX-sx)*0.5, dy=(e.clientY-sy)*0.5;
+  holo.style.transform=`rotateX(${dy*0.1}deg) rotateY(${dx*0.1}deg) scale(1.05)`;
+  holo.style.filter=`hue-rotate(${dx*0.2}deg) brightness(1.2)`;
+});
+holo.addEventListener('mouseleave',()=>{holo.style.transform='';holo.style.filter='';isDrag=false});
 
 // MEMORY
 let chatHistory=JSON.parse(localStorage.getItem('dh2_chat_history')||'[]');
 let chatMsgs=JSON.parse(localStorage.getItem('dh2_chat_msgs')||'[]');
 function saveLocal(){localStorage.setItem('dh2_chat_history',JSON.stringify(chatHistory.slice(-20)));localStorage.setItem('dh2_chat_msgs',JSON.stringify(chatMsgs.slice(-100)));}
-function loadLocalChat(){
+function loadLocal(){
   let chat=document.getElementById('chat');chat.innerHTML='';
   if(chatMsgs.length===0){
-    chat.innerHTML='<div class="msg friday"><b>FRIDAY:</b> Boss scroll fix chesa! Right side top lo TOP/UP/DOWN/BOTTOM buttons vachayi. Scroll bar ippudu blue color lo kanipistundi. Test kosam left side lo TEST SCROLL button nokku. Refresh chesina chat save avthundi!</div>';
-  }else{
-    chatMsgs.forEach(m=>{let d=document.createElement('div');d.className=`msg ${m.who}`;d.innerHTML=m.html;chat.appendChild(d);});
-  }
-  setTimeout(()=>{chat.scrollTop=chat.scrollHeight;},100);
+    chat.innerHTML='<div class=\"msg friday\"><b>FRIDAY:</b> Boss Hologram interface loaded! Same as your pic - cyan rings, red reactor, touch drag enabled! Central holo ni mouse tho drag chey - glow vasthundi. App chips touch chey - open avthayi. Scroll buttons top right lo unnai. Full Tony Stark feel!</div>';
+  }else{chatMsgs.forEach(m=>{let d=document.createElement('div');d.className=`msg ${m.who}`;d.innerHTML=m.html;chat.appendChild(d);});}
+  chat.scrollTop=chat.scrollHeight;
 }
-loadLocalChat();
-
-// SCROLL - GUARANTEED WORKING
-function scrollChat(dir){
-  let c=document.getElementById('chat');
-  console.log("Scroll",dir,c.scrollHeight);
-  if(dir==='up') c.scrollBy({top:-300,behavior:'smooth'});
-  if(dir==='down') c.scrollBy({top:300,behavior:'smooth'});
-  if(dir==='bottom') c.scrollTop=c.scrollHeight;
-  if(dir==='top') c.scrollTop=0;
-}
-function testScroll(){
-  for(let i=1;i<=20;i++){
-    addMsg(i%2===0?'user':'friday',`Test message ${i} - Scroll test kosam. Ippudu scroll bar kanipistunda chudu Boss! ${i%2===0?'BOSS QUESTION':'FRIDAY FULL DETAILED ANSWER - This is long answer to test scroll functionality. If you can read this, scroll is working!'}`);
-  }
-}
-
-// VOICE
-let indianFemaleVoice=null,voiceEnabled=true;
-function loadVoices(){
-  let voices=speechSynthesis.getVoices();
-  let sel=document.getElementById('voiceList');sel.innerHTML='';
-  let indian=voices.filter(v=>v.lang.includes('IN')||v.name.includes('Heera'));
-  let list=indian.length?indian:voices;
-  list.forEach((v,i)=>{let o=document.createElement('option');o.value=i;o.text=`${v.name} (${v.lang})`;if(v.name.includes('Heera')){o.selected=true;indianFemaleVoice=v;}sel.appendChild(o);});
-  if(!indianFemaleVoice) indianFemaleVoice=list.find(v=>v.lang==='en-IN')||list[0];
-  document.getElementById('voice-name').innerText=indianFemaleVoice?indianFemaleVoice.name.toUpperCase():'VOICE READY';
-}
-function changeVoice(){let voices=speechSynthesis.getVoices();let indian=voices.filter(v=>v.lang.includes('IN')||v.name.includes('Heera'));let list=indian.length?indian:voices;indianFemaleVoice=list[document.getElementById('voiceList').value];speakAsFriday("Hi Boss, Indian voice changed! Scroll buttons working!");}
-if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=loadVoices; setTimeout(loadVoices,800);
-function toggleVoice(){voiceEnabled=!voiceEnabled;document.getElementById('voiceToggle').innerText=voiceEnabled?'🔊 VOICE: ON':'🔇 VOICE: OFF';if(!voiceEnabled)speechSynthesis.cancel();}
-function speakAsFriday(t){if(!voiceEnabled)return;speechSynthesis.cancel();setTimeout(()=>{let u=new SpeechSynthesisUtterance(t.replace(/<[^>]*>/g,''));if(indianFemaleVoice)u.voice=indianFemaleVoice;u.lang='en-IN';u.rate=0.88;u.pitch=1.2;speechSynthesis.speak(u);},80);}
-
-function addMsg(who,text,skipSave=false){
-  let chat=document.getElementById('chat');
-  let html=(who==='user'?'<b>BOSS:</b> ':'<b>FRIDAY:</b> ')+text;
+loadLocal();
+function scrollChat(dir){let c=document.getElementById('chat');if(dir==='up')c.scrollBy({top:-250,behavior:'smooth'});if(dir==='down')c.scrollBy({top:250,behavior:'smooth'});if(dir==='bottom')c.scrollTop=c.scrollHeight;if(dir==='top')c.scrollTop=0;}
+function addMsg(who,text){
+  let chat=document.getElementById('chat');let html=(who==='user'?'<b>BOSS:</b> ':'<b>FRIDAY:</b> ')+text;
   let div=document.createElement('div');div.className=`msg ${who}`;div.innerHTML=html;chat.appendChild(div);
   chat.scrollTop=chat.scrollHeight;
+  chatMsgs.push({who,html});saveLocal();
   if(who==='friday') speakAsFriday(text);
-  if(!skipSave){chatMsgs.push({who,html});saveLocal();}
 }
-function clearChat(){if(!confirm('Clear?'))return;chatMsgs=[];chatHistory=[];localStorage.clear();document.getElementById('chat').innerHTML='<div class="msg friday"><b>FRIDAY:</b> Cleared!</div>';}
+function clearChat(){if(!confirm('Clear hologram memory?'))return;chatMsgs=[];chatHistory=[];localStorage.clear();document.getElementById('chat').innerHTML='<div class=\"msg friday\"><b>FRIDAY:</b> Memory purged Boss!</div>';}
+
+// VOICE - INDIAN HEERA
+let indianVoice=null, voiceOn=true;
+function loadVoices(){
+  let vs=speechSynthesis.getVoices();let sel=document.getElementById('voiceList');sel.innerHTML='';
+  let indian=vs.filter(v=>v.lang.includes('IN')||v.name.includes('Heera'));
+  let list=indian.length?indian:vs;
+  list.forEach((v,i)=>{let o=document.createElement('option');o.value=i;o.text=v.name;if(v.name.includes('Heera')){o.selected=true;indianVoice=v;}sel.appendChild(o);});
+  if(!indianVoice) indianVoice=list[0];
+  document.getElementById('voice-name').innerText=indianVoice?indianVoice.name.toUpperCase():'VOICE READY';
+}
+if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=loadVoices; setTimeout(loadVoices,800);
+function speakAsFriday(t){if(!voiceOn)return;speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t.replace(/<[^>]*>/g,''));if(indianVoice)u.voice=indianVoice;u.lang='en-IN';u.rate=0.88;u.pitch=1.2;speechSynthesis.speak(u);}
+function startVoice(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return;let r=new SR();r.lang='te-IN';r.start();addMsg('friday','🎤 Listening... Hologram active!');r.onresult=e=>{document.getElementById('cmd').value=e.results[0][0].transcript;send();}}
 
 let isBusy=false;
 async function send(){
-  if(isBusy) return;
-  let input=document.getElementById('cmd');let msg=input.value.trim();if(!msg)return;
-  isBusy=true;input.disabled=true;
-  addMsg('user',msg);input.value='';
-  let tid='typing-'+Date.now();
-  document.getElementById('chat').innerHTML+=`<div class="msg friday" id="${tid}"><b>FRIDAY:</b> <i>typing full answer...</i></div>`;
+  if(isBusy) return;let input=document.getElementById('cmd');let msg=input.value.trim();if(!msg)return;
+  isBusy=true;addMsg('user',msg);input.value='';
+  let tid='t-'+Date.now();document.getElementById('chat').innerHTML+=`<div class="msg friday" id="${tid}"><b>FRIDAY:</b> <i>Quantum processing...</i></div>`;
   document.getElementById('chat').scrollTop=document.getElementById('chat').scrollHeight;
   try{
     let res=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,history:chatHistory})});
-    let data=await res.json();
-    document.getElementById(tid)?.remove();
-    addMsg('friday',data.reply);
-    chatHistory.push({role:"user",content:msg},{role:"assistant",content:data.reply});
-    saveLocal();
+    let data=await res.json();document.getElementById(tid)?.remove();addMsg('friday',data.reply);
+    chatHistory.push({role:"user",content:msg},{role:"assistant",content:data.reply});saveLocal();
     if(data.url) window.open(data.url,'_blank');
-  }catch(e){document.getElementById(tid)?.remove();addMsg('friday','Network slow Boss.');}
-  isBusy=false;input.disabled=false;input.focus();
+  }catch(e){document.getElementById(tid)?.remove();addMsg('friday','Network anomaly Boss.');}
+  isBusy=false;input.focus();
 }
-function startVoice(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return;let rec=new SR();rec.lang='te-IN';rec.start();rec.onresult=(e)=>{document.getElementById('cmd').value=e.results[0][0].transcript;send();}}
-setInterval(()=>{document.getElementById('live-time').innerText=new Date().toLocaleTimeString();},1000);
+async function connectBluetooth(){
+  try{if(!navigator.bluetooth){addMsg('friday','Use Chrome for BT Boss!');return;}let d=await navigator.bluetooth.requestDevice({acceptAllDevices:true});addMsg('friday',`✅ BT Connected: <b>${d.name}</b> - Hologram link established!`);}catch(e){addMsg('friday',`BT: ${e.message}`);}
+}
+setInterval(()=>{document.getElementById('live-time').innerText=new Date().toLocaleTimeString()+' • 21 JUN 2026';document.getElementById('cpu').innerText=Math.floor(60+Math.random()*20);document.getElementById('cpuBar').style.width=(60+Math.random()*20)+'%';},1000);
 document.getElementById('cmd').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
-
-// FORCE SCROLL VISIBLE AFTER LOAD
-setTimeout(()=>{let c=document.getElementById('chat');c.style.overflowY='scroll'; c.scrollTop=c.scrollHeight;},500);
 </script>
 </body>
 </html>
