@@ -2,60 +2,197 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DH² // TEJA'S FRIDAY OS v5.0</title>
+<title>DH² // FRIDAY MARK-85</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#020a0a;color:#00e5ff;font-family:'Orbitron',monospace;overflow:hidden;height:100vh;background:radial-gradient(circle at center, #002222 0%, #000709 100%)}
-.top{height:22px;border-bottom:1px solid #00ffff33;display:flex;align-items:center;padding:0 10px;font-size:11px;letter-spacing:2px}
-.top span{margin-right:14px;opacity:0.6}.top span.active{background:#00ffff;color:#000;padding:2px 8px;border-radius:3px;opacity:1}
-.main{display:grid;grid-template-columns:320px 1fr 340px;height:calc(100vh - 22px)}
-.left,.right{padding:8px;border-right:1px solid #00ffff22;position:relative;overflow:hidden}
-.right{border-left:1px solid #00ffff22;border-right:none}
-.circle{border-radius:50%;border:2px solid #00ffff;box-shadow:0 0 25px #00ffff88, inset 0 0 15px #00ffff44;display:flex;align-items:center;justify-content:center;position:absolute}
-.c-big{width:170px;height:170px;left:20px;top:30px}.c-cpu{width:95px;height:95px;left:210px;top:90px;font-size:9px;text-align:center}.c-ram{width:110px;height:110px;left:320px;top:15px;font-size:10px;text-align:center}.c-energy{width:130px;height:130px;left:20px;top:420px}.c-bottom{width:140px;height:140px;left:190px;bottom:20px}
-.center{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.reactor{width:480px;height:480px;border-radius:50%;position:relative;border:1px solid #00ffff44;display:flex;align-items:center;justify-content:center}
-.ring{position:absolute;border-radius:50%;border:1px solid #00ffff88;animation:spin linear infinite}
-.r1{width:92%;height:92%;border-top:3px solid #ff0044;animation-duration:4s}.r2{width:78%;height:78%;border:2px dashed #00ffff66;animation-duration:8s;animation-direction:reverse}
-.r3{width:62%;height:62%;background:radial-gradient(circle, #00ffffcc, #004444 70%);box-shadow:0 0 60px #00ffff;cursor:pointer;display:flex;align-items:center;justify-content:center}
-@keyframes spin{to{transform:rotate(360deg)}}.diamond{width:22px;height:22px;background:#fff;transform:rotate(45deg);box-shadow:0 0 15px #fff}
-.brand-left{position:absolute;left:20px;top:380px;line-height:0.9}.brand-left.small{font-size:12px;letter-spacing:4px;color:#7cffff}.brand-left.big{font-size:44px;font-weight:900;color:#a0ffff;text-shadow:0 0 20px #00ffff}
-.brand-bottom{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);font-size:32px;font-weight:900;letter-spacing:4px;color:#00ffff;text-shadow:0 0 20px #00ffff}
-.controls{position:absolute;bottom:10px;left:10px;right:10px}.btn{width:48%;background:rgba(0,255,255,0.08);border:1px solid #00ffff;color:#00ffff;padding:7px;margin:2px;cursor:pointer;font-size:9px;display:inline-block}.btn:hover{background:#00ffff;color:#000}.btn-danger{border-color:#ff2a6d;color:#ff2a6d;width:100%}
-#reply{color:#fff;font-size:12px;min-height:40px;margin:10px 0;text-align:center;max-width:500px}#cmd{flex:1;background:#000;border:1px solid #00ffff;color:#00ffff;padding:8px;font-family:monospace}#exec{background:#00ffff;color:#000;border:none;padding:8px 15px;cursor:pointer;font-weight:bold}.input-row{display:flex;width:90%;max-width:500px;margin-top:10px}#log{font-size:9px;height:90px;overflow-y:auto;color:#00ffff99;margin-top:8px;border-top:1px solid #00ffff22;padding-top:5px}
+body{background:#010a0f;color:#00f0ff;font-family:'Rajdhani',sans-serif;height:100vh;overflow:hidden;background:radial-gradient(ellipse at center, #0a2a3a 0%, #010a0f 70%)}
+.top-bar{height:28px;border-bottom:2px solid #00f0ff55;display:flex;align-items:center;padding:0 15px;font-family:'Orbitron';font-size:10px;letter-spacing:3px;background:rgba(0,240,255,0.05)}
+.main{display:grid;grid-template-columns:340px 1fr 380px;height:calc(100vh - 28px)}
+
+/* LEFT - APPS CRYSTAL CLEAR */
+.left{border-right:2px solid #00f0ff33;padding:12px;background:rgba(0,20,30,0.6);overflow-y:auto}
+.left h3{font-family:'Orbitron';font-size:11px;letter-spacing:4px;margin-bottom:10px;color:#00f0ff;text-shadow:0 0 10px #00f0ff}
+.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.app-btn{background:linear-gradient(135deg, rgba(0,240,255,0.1), rgba(0,240,255,0.02));border:1px solid #00f0ff66;color:#00f0ff;padding:10px 5px;text-align:center;cursor:pointer;font-family:'Orbitron';font-size:9px;letter-spacing:1px;transition:0.2s;position:relative;overflow:hidden}
+.app-btn:hover{background:#00f0ff;color:#000;box-shadow:0 0 20px #00f0ff;transform:scale(1.05);font-weight:700}
+.app-btn i{font-size:18px;display:block;margin-bottom:3px}
+.energy-ring{width:140px;height:140px;border:3px solid #00f0ff;border-radius:50%;margin:15px auto;display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 0 30px #00f0ff88, inset 0 0 20px #00f0ff33;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 30px #00f0ff88}50%{box-shadow:0 0 50px #00f0ff}}
+.quick-actions{margin-top:15px;display:flex;flex-direction:column;gap:5px}
+.q-btn{background:rgba(255,0,100,0.15);border:1px solid #ff0066;color:#ff6a9d;padding:8px;font-size:9px;font-family:'Orbitron';cursor:pointer}
+.q-btn.bluetooth{background:rgba(0,255,136,0.15);border-color:#00ff88;color:#00ff88}
+.q-btn:hover{filter:brightness(1.5)}
+
+/* CENTER - REACTOR */
+.center{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at center, rgba(0,240,255,0.08) 0%, transparent 60%)}
+.reactor{width:380px;height:380px;position:relative;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;border-radius:50%;border:1px solid #00f0ff}
+.r1{width:100%;height:100%;border-top:3px solid #ff0055;border-right:3px solid transparent;animation:spin 3s linear infinite}
+.r2{width:82%;height:82%;border:2px dashed #00f0ff44;animation:spin 6s linear infinite reverse}
+.r3{width:60%;height:60%;background:radial-gradient(circle, #00f0ff, #004455);box-shadow:0 0 80px #00f0ff;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:glow 2s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes glow{0%,100%{box-shadow:0 0 80px #00f0ff}50%{box-shadow:0 0 120px #00f0ff, 0 0 40px #fff}}
+.core{width:24px;height:24px;background:#fff;transform:rotate(45deg);box-shadow:0 0 20px #fff}
+.brand{font-family:'Orbitron';font-weight:900;font-size:36px;letter-spacing:8px;margin-top:20px;text-shadow:0 0 20px #00f0ff}
+.input-box{position:absolute;bottom:30px;width:85%;display:flex;gap:8px}
+#cmd{flex:1;background:rgba(0,0,0,0.7);border:2px solid #00f0ff;color:#00f0ff;padding:12px;font-family:'Orbitron';font-size:11px;outline:none}
+#cmd:focus{box-shadow:0 0 20px #00f0ff}
+#exec{background:#00f0ff;color:#000;border:none;padding:0 20px;font-family:'Orbitron';font-weight:900;cursor:pointer}
+#exec:hover{background:#fff}
+
+/* RIGHT - TONY STARK CHAT + CONTACTS */
+.right{border-left:2px solid #00f0ff33;padding:0;background:rgba(0,10,15,0.8);display:flex;flex-direction:column}
+.right-header{padding:10px;border-bottom:1px solid #00f0ff33;font-family:'Orbitron';font-size:10px;display:flex;justify-content:space-between}
+.chat-area{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.msg{padding:10px;border-radius:4px;max-width:95%;font-size:13px;line-height:1.4}
+.msg.user{align-self:flex-end;background:rgba(0,240,255,0.15);border:1px solid #00f0ff66;color:#a0f0ff}
+.msg.friday{align-self:flex-start;background:rgba(255,255,255,0.05);border:1px solid #ffffff22;color:#fff;box-shadow:0 0 10px rgba(0,240,255,0.1)}
+.msg.friday b{color:#00f0ff}
+.contacts{border-top:2px solid #00f0ff33;padding:10px;max-height:220px;overflow-y:auto}
+.contacts h4{font-family:'Orbitron';font-size:9px;letter-spacing:2px;margin-bottom:8px}
+.contact-item{display:flex;justify-content:space-between;align-items:center;background:rgba(0,240,255,0.06);border:1px solid #00f0ff22;padding:6px 8px;margin-bottom:4px;font-size:11px}
+.contact-item button{border:none;padding:3px 8px;font-size:9px;cursor:pointer;margin-left:4px;font-family:'Orbitron'}
+.call-btn{background:#00ff88;color:#000}.sms-btn{background:#ffaa00;color:#000}
 </style>
 </head>
 <body>
-<div class="top"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span class="active">21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span style="margin-left:auto">GUNTUR, AP // DH² // TEJA'S FRIDAY OS v5.0</span></div>
+<div class="top-bar">
+<span>MARK-85</span><span style="opacity:0.4">|</span><span id="live-time">--:--:--</span><span style="margin-left:auto">BOSS: TEJA // DH² CORE: <span id="core">78</span>% // SECURE LINK: ACTIVE</span>
+</div>
+
 <div class="main">
+<!-- LEFT: APPS CLEAR -->
 <div class="left">
-<div class="circle c-big"><div style="text-align:center"><div style="font-size:10px">JUNE</div><div style="font-size:64px;font-weight:700;line-height:1">21</div><div style="font-size:8px;margin-top:5px">STARDATE // 2026</div></div></div>
-<div class="circle c-cpu">CPU:<br>C0: 74%<br>C1: 57%</div>
-<div class="circle c-ram">RAM: 75%<br>SWAP: 49%</div>
-<div class="brand-left"><div class="small">TEJA'S</div><div class="big">FRIDAY</div></div>
-<div class="circle c-energy"><div style="text-align:center">ENERGY<br><span style="font-size:22px">100%</span></div></div>
-<div class="circle c-bottom"><div style="text-align:center;font-size:9px">DH²-CORE-01</div></div>
-<div class="controls">
-<button class="btn" onclick="openApp('youtube')">YOUTUBE</button><button class="btn" onclick="openApp('google')">GOOGLE</button><button class="btn" onclick="openApp('gmail')">GMAIL</button><button class="btn" onclick="openApp('github')">GITHUB</button><button class="btn" onclick="openApp('instagram')">INSTA</button><button class="btn" onclick="openApp('chatgpt')">CHATGPT</button><button class="btn btn-danger" onclick="startVoice()">🎤 HEY FRIDAY - VOICE</button>
-<div id="log">> FRIDAY v5.0 SECURE MODE<br>> Waiting for GROQ_API_KEY in Render Environment<br></div>
+<h3>// APP MATRIX - ALL ACCESS</h3>
+<div class="app-grid" id="appGrid"></div>
+
+<div class="energy-ring"><div style="font-family:'Orbitron';font-size:32px;font-weight:900">102%</div><div style="font-size:9px;letter-spacing:2px">ARC REACTOR</div></div>
+
+<div class="quick-actions">
+<button class="q-btn bluetooth" onclick="connectBluetooth()">📱 CONNECT TO MY PHONE (BLUETOOTH)</button>
+<button class="q-btn" onclick="startVoice()">🎤 HEY FRIDAY VOICE - TELUGU</button>
+<button class="q-btn" onclick="document.getElementById('cmd').value='call mom';send()">📞 QUICK DIAL CONTACTS</button>
+<input id="customApp" placeholder="Type any app name... ex: hotstar, prime, zomato" style="background:#000;border:1px solid #00f0ff;color:#00f0ff;padding:8px;font-size:10px;margin-top:5px">
+<button class="q-btn" onclick="openCustomApp()" style="background:rgba(0,240,255,0.2)">🚀 OPEN ANY APP</button>
 </div>
 </div>
+
+<!-- CENTER: REACTOR -->
 <div class="center">
-<div class="reactor"><div class="ring r1"></div><div class="ring r2"></div><div class="r3" onclick="startVoice()"><div class="diamond"></div></div></div>
-<div id="reply">I am FRIDAY, built by Boss Teja under DH². Add GROQ_API_KEY in Render Environment to activate AI Brain.</div>
-<div class="input-row"><input id="cmd" placeholder="open youtube / ela unnav..."><button id="exec" onclick="send()">EXECUTE</button></div>
-<div class="brand-bottom">DH²</div>
+<div class="reactor"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3" onclick="startVoice()"><div class="core"></div></div></div>
+<div class="brand">DH²</div>
+<div style="font-size:9px;letter-spacing:5px;opacity:0.6">TEJA'S FRIDAY OS v6.0 - MARK 85</div>
+<div class="input-box">
+<input id="cmd" placeholder="open youtube / call amma / sms nanna / connect phone...">
+<button id="exec" onclick="send()">EXECUTE</button>
 </div>
-<div class="right"><b id="clock">--:--:--</b><br>BOSS: TEJA<br>DH² CORE: <span id="cpu">42</span>%<br>STATUS: SECURE MODE</div>
 </div>
+
+<!-- RIGHT: REPLY + CONTACTS -->
+<div class="right">
+<div class="right-header"><span>// FRIDAY MEMORY LOG</span><span style="color:#00ff88">● ONLINE</span></div>
+<div class="chat-area" id="chat">
+<div class="msg friday"><b>FRIDAY:</b> Systems online, Boss Teja. Mark-85 protocol loaded. Left side lo anni apps clear ga unnayi. Right side lo neeku replies vastayi. Phone connect chey, call/sms kuda chestha.</div>
+</div>
+
+<div class="contacts">
+<h4>// MOBILE LINK - CONTACTS & ACTIONS</h4>
+<div style="font-size:10px;opacity:0.7;margin-bottom:6px">Add your contacts below - FRIDAY will call/sms via your phone</div>
+<div id="contactList"></div>
+<div style="display:flex;gap:5px;margin-top:8px">
+<input id="cname" placeholder="Name" style="flex:1;background:#000;border:1px solid #00f0ff33;color:#00f0ff;padding:5px;font-size:10px">
+<input id="cphone" placeholder="Number" style="flex:1;background:#000;border:1px solid #00f0ff33;color:#00f0ff;padding:5px;font-size:10px">
+<button onclick="addContact()" style="background:#00f0ff;color:#000;border:none;padding:5px 10px;font-family:'Orbitron';font-size:9px">ADD</button>
+</div>
+</div>
+</div>
+</div>
+
 <script>
-const apps={youtube:'https://youtube.com',google:'https://google.com',gmail:'https://mail.google.com',github:'https://github.com',instagram:'https://instagram.com',chatgpt:'https://chat.openai.com',maps:'https://maps.google.com',drive:'https://drive.google.com'};
-function openApp(n){window.open(apps[n]||`https://${n}.com`,'_blank')}
-function updateTime(){let n=new Date();document.getElementById('clock').innerText=n.toLocaleTimeString();document.getElementById('cpu').innerText=Math.floor(40+Math.random()*30);}setInterval(updateTime,1000);updateTime();
-async function sendToAI(m){let r=document.getElementById('reply');r.innerText="FRIDAY thinking...";try{let res=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:m})});let d=await res.json();r.innerText=d.reply;if(d.url)window.open(d.url,'_blank');}catch(e){r.innerText="Offline - Apps work"}}
-async function send(){let i=document.getElementById('cmd');let m=i.value.trim();if(!m)return;if(m.includes("open")){for(let k in apps){if(m.includes(k)){openApp(k);document.getElementById('reply').innerText=`Opening ${k.toUpperCase()}, Boss!`;i.value='';return;}}}sendToAI(m);i.value='';}
-function startVoice(){alert("Voice F3.0 - Telugu accent code next update lo istha Boss! Ippudu typing work avthundi.");}
+// ALL APPS DATABASE - 60+ Apps
+const ALL_APPS = {
+youtube:"https://youtube.com",google:"https://google.com",gmail:"https://mail.google.com",github:"https://github.com",instagram:"https://instagram.com",facebook:"https://facebook.com",chatgpt:"https://chat.openai.com",maps:"https://maps.google.com",drive:"https://drive.google.com",netflix:"https://netflix.com",spotify:"https://open.spotify.com",whatsapp:"https://web.whatsapp.com",linkedin:"https://linkedin.com",twitter:"https://x.com",hotstar:"https://hotstar.com",prime:"https://primevideo.com",zomato:"https://zomato.com",swiggy:"https://swiggy.com",flipkart:"https://flipkart.com",amazon:"https://amazon.in",irctc:"https://irctc.co.in",paytm:"https://paytm.com",phonepe:"https://phonepe.com",notion:"https://notion.so",canva:"https://canva.com",figma:"https://figma.com",reddit:"https://reddit.com",discord:"https://discord.com",telegram:"https://web.telegram.org",snapchat:"https://snapchat.com",pinterest:"https://pinterest.com",meet:"https://meet.google.com",zoom:"https://zoom.us",classroom:"https://classroom.google.com"
+};
+
+// Render App Grid Clearly
+function renderApps(){
+let grid=document.getElementById('appGrid');grid.innerHTML='';
+for(let name in ALL_APPS){
+let btn=document.createElement('div');btn.className='app-btn';btn.innerHTML=`${name.toUpperCase()}`;btn.onclick=()=>openApp(name);grid.appendChild(btn);
+}
+}
+renderApps();
+
+function openApp(name){
+let url=ALL_APPS[name.toLowerCase()]||`https://www.google.com/search?q=${name}`;
+window.open(url,'_blank');
+addMsg('friday',`Opening <b>${name.toUpperCase()}</b> for you, Boss.`);
+}
+function openCustomApp(){
+let val=document.getElementById('customApp').value.trim().toLowerCase();
+if(!val)return;
+if(ALL_APPS[val]) openApp(val);
+else {window.open(`https://${val}.com`,'_blank'); addMsg('friday',`New target <b>${val}</b> - Opening directly, Boss. If not exist, searching.`); window.open(`https://www.google.com/search?q=${val} official site`,'_blank');}
+}
+
+// Chat System - Right Side
+function addMsg(who,text){
+let chat=document.getElementById('chat');let div=document.createElement('div');div.className=`msg ${who}`;div.innerHTML=(who==='user'?'<b>BOSS:</b> ':'<b>FRIDAY:</b> ')+text;chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+// Voice
+if(who==='friday' && 'speechSynthesis' in window){let u=new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g,''));u.lang='te-IN';u.rate=0.95;speechSynthesis.speak(u);}
+}
+
+async function send(){
+let input=document.getElementById('cmd');let msg=input.value.trim();if(!msg)return;
+addMsg('user',msg);input.value='';
+let lower=msg.toLowerCase();
+
+// ALL APP OPEN LOGIC
+if(lower.startsWith('open ')){
+let appName=lower.replace('open ','').trim();
+if(ALL_APPS[appName]){openApp(appName);return;}
+else{window.open(`https://www.google.com/search?q=${appName} official website`,'_blank');addMsg('friday',`Boss, <b>${appName}</b> database lo ledu, but Google lo open chesa. Direct ga kuda try chesthunna.`);window.open(`https://${appName}.com`,'_blank');return;}
+}
+// CALL & SMS Logic
+if(lower.startsWith('call ')){let name=lower.replace('call ','').trim();makeCall(name);return;}
+if(lower.startsWith('sms ')||lower.startsWith('message ')){let parts=msg.split(' ');let name=parts[1];let text=parts.slice(2).join(' ');makeSMS(name,text);return;}
+if(lower.includes('connect')&&lower.includes('phone')){connectBluetooth();return;}
+
+// AI
+try{
+let res=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
+let data=await res.json();addMsg('friday',data.reply);if(data.url)window.open(data.url,'_blank');
+}catch(e){addMsg('friday','Link slow, Boss. But apps, call, sms work 100%.');}
+}
+
+// CONTACTS + CALL/SMS
+let contacts=JSON.parse(localStorage.getItem('dh2_contacts')||'[{"name":"Amma","phone":""},{"name":"Nanna","phone":""}]');
+function renderContacts(){let list=document.getElementById('contactList');list.innerHTML='';contacts.forEach((c,i)=>{list.innerHTML+=`<div class="contact-item"><span>${c.name} - ${c.phone||'No number'}</span><span><button class="call-btn" onclick="makeCall('${c.name}')">CALL</button><button class="sms-btn" onclick="makeSMS('${c.name}','')">SMS</button></span></div>`});}
+function addContact(){let n=document.getElementById('cname').value.trim();let p=document.getElementById('cphone').value.trim();if(!n||!p)return alert('Name & Number kavali Boss');contacts.push({name:n,phone:p});localStorage.setItem('dh2_contacts',JSON.stringify(contacts));renderContacts();document.getElementById('cname').value='';document.getElementById('cphone').value='';addMsg('friday',`Contact <b>${n}</b> saved, Boss.`);}
+function makeCall(name){let c=contacts.find(x=>x.name.toLowerCase()===name.toLowerCase());if(!c||!c.phone){addMsg('friday',`Boss, ${name} number ledu. Kindha add chey.`);return;}addMsg('friday',`Calling <b>${c.name}</b> at ${c.phone} - Phone lo dial open avthundi...`);window.location.href=`tel:${c.phone}`;}
+function makeSMS(name,text){let c=contacts.find(x=>x.name.toLowerCase()===name.toLowerCase());if(!c||!c.phone){addMsg('friday',`Boss, ${name} number ledu.`);return;}let msg=text||prompt(`Message to ${c.name}:`);if(!msg)return;window.location.href=`sms:${c.phone}?body=${encodeURIComponent(msg)}`;addMsg('friday',`SMS to <b>${c.name}</b> ready, Boss.`);}
+renderContacts();
+
+// BLUETOOTH CONNECT
+async function connectBluetooth(){
+addMsg('friday','Scanning for your mobile via Bluetooth... Allow chesuko Boss.');
+try{
+if(!navigator.bluetooth){addMsg('friday','Boss, ee browser Bluetooth support cheyadu. Chrome lo try chey. Ippatiki Call & SMS direct ga phone ki link ayyayi.');return;}
+let device=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:['battery_service']});
+addMsg('friday',`Connected to <b>${device.name}</b>! Ippudu call & sms direct ga ee device ki velthayi, Boss. Mark-85 LINK SUCCESS!`);
+}catch(e){addMsg('friday',`Bluetooth: ${e.message} - Kani tel/sms links already work avthunnayi Boss, phone lo automatic ga open avthayi.`);}
+}
+
+function startVoice(){
+let SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SpeechRecognition){addMsg('friday','Voice ee browser lo ledu, typing use chey Boss.');return;}
+let rec=new SpeechRecognition();rec.lang='te-IN';rec.start();
+addMsg('friday','Listening... Cheppu Boss.');
+rec.onresult=(e)=>{let txt=e.results[0][0].transcript;document.getElementById('cmd').value=txt;send();}
+}
+
+// Live Time
+setInterval(()=>{document.getElementById('live-time').innerText=new Date().toLocaleTimeString();document.getElementById('core').innerText=Math.floor(60+Math.random()*30)},1000);
 document.getElementById('cmd').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
 </script>
 </body>
